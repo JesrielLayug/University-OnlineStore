@@ -1,4 +1,5 @@
-﻿using OnlineEcommerce.Server.Data.Repositories.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using OnlineEcommerce.Server.Data.Repositories.Contracts;
 using OnlineEcommerce.Server.Models;
 
 namespace OnlineEcommerce.Server.Data.Repositories
@@ -12,29 +13,37 @@ namespace OnlineEcommerce.Server.Data.Repositories
             this._db = db;
         }
 
-        public Task<IEnumerable<Product>> GetAll()
+        public async Task<IEnumerable<Product>> GetAll()
         {
-            throw new NotImplementedException();
+            var products = await _db.Products.ToListAsync();
+            return products;
         }
 
-        public Task<Product> GetById(int id)
+        public async Task<Product> GetById(int id)
         {
-            throw new NotImplementedException();
+            var product = await _db.Products.FirstOrDefaultAsync(x => x.Id == id);
+            return product;
         }
 
-        public Task<Product> CreateProduct(Product product)
+        public async Task<bool> CreateProduct(Product product)
         {
-            throw new NotImplementedException();
+            _db.Products.Add(product);
+            var change = await _db.SaveChangesAsync();
+            return change > 0;
         }
 
-        public Task<Product> DeleteProduct(Product product)
+        public async Task<bool> DeleteProduct(Product product)
         {
-            throw new NotImplementedException();
+            _db.Products.Remove(product);
+            var change = await _db.SaveChangesAsync();
+            return change > 0;
         }
 
-        public Task<Product> UpdateProduct(Product product)
+        public async Task<bool> UpdateProduct(Product product)
         {
-            throw new NotImplementedException();
+            _db.Products.Update(product);
+            var change = await _db.SaveChangesAsync();
+            return change > 0;
         }
     }
 }
