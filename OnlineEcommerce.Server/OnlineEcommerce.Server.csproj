@@ -7,6 +7,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\Images\Bags\**" />
+    <Compile Remove="wwwroot\Images\Essentials\**" />
+    <Compile Remove="wwwroot\Images\ID-Laces\**" />
+    <Compile Remove="wwwroot\Images\PE-Uniforms\**" />
+    <Compile Remove="wwwroot\Images\Uniforms\**" />
+    <Content Remove="wwwroot\Images\Bags\**" />
+    <Content Remove="wwwroot\Images\Essentials\**" />
+    <Content Remove="wwwroot\Images\ID-Laces\**" />
+    <Content Remove="wwwroot\Images\PE-Uniforms\**" />
+    <Content Remove="wwwroot\Images\Uniforms\**" />
+    <EmbeddedResource Remove="wwwroot\Images\Bags\**" />
+    <EmbeddedResource Remove="wwwroot\Images\Essentials\**" />
+    <EmbeddedResource Remove="wwwroot\Images\ID-Laces\**" />
+    <EmbeddedResource Remove="wwwroot\Images\PE-Uniforms\**" />
+    <EmbeddedResource Remove="wwwroot\Images\Uniforms\**" />
+    <None Remove="wwwroot\Images\Bags\**" />
+    <None Remove="wwwroot\Images\Essentials\**" />
+    <None Remove="wwwroot\Images\ID-Laces\**" />
+    <None Remove="wwwroot\Images\PE-Uniforms\**" />
+    <None Remove="wwwroot\Images\Uniforms\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.20" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.20">
       <PrivateAssets>all</PrivateAssets>
@@ -16,10 +39,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="Data\Repositories\" />
     <Folder Include="Services\" />
-    <Folder Include="Repository\" />
-    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>

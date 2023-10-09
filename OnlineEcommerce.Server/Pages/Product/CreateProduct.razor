@@ -1,0 +1,26 @@
+﻿@page "/create-product"
+
+<h3 class="create-heading">Add Product Info</h3>
+<MudGrid Class="mt-1">
+    <MudItem xs="12" sm="7">
+        <MudPaper Class="d-flex align-center justify-center
+                         mud-width-full py-5" Square="true">
+            <MudContainer Fixed="true">
+                <MudTextField @bind-Value="TextValue" Label="Product Name"
+                              Variant="Variant.Outlined"></MudTextField>
+                <MudTextField T="string" Label="Outlined"
+                              Variant="Variant.Outlined" Lines="4" />
+            </MudContainer>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="10" sm="5" >
+        <MudPaper Class="d-flex align-center justify-center 
+                         mud-width-full py-8">
+            xs=12 sm=6
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+
+@code {
+    public string TextValue { get; set; }
+}

@@ -1,0 +1,61 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\OnlineEcommerce.Server.bundle.scp.css",
+      "PackagePath": "staticwebassets\\OnlineEcommerce.Server.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\wwwroot\\Images\\MainStore\\bias-1.jpg",
+      "PackagePath": "staticwebassets\\Images\\MainStore\\bias-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\wwwroot\\Images\\MainStore\\lace-4.jpg",
+      "PackagePath": "staticwebassets\\Images\\MainStore\\lace-4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\wwwroot\\Images\\MainStore\\patch-1.jpg",
+      "PackagePath": "staticwebassets\\Images\\MainStore\\patch-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\wwwroot\\Images\\MainStore\\pe-3.jpg",
+      "PackagePath": "staticwebassets\\Images\\MainStore\\pe-3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\wwwroot\\Images\\MainStore\\pe-5.jpg",
+      "PackagePath": "staticwebassets\\Images\\MainStore\\pe-5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\wwwroot\\Images\\MainStore\\pe-pants-1.jpg",
+      "PackagePath": "staticwebassets\\Images\\MainStore\\pe-pants-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\wwwroot\\Images\\MainStore\\uniform-1.jpg",
+      "PackagePath": "staticwebassets\\Images\\MainStore\\uniform-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\wwwroot\\Images\\MainStore\\uniform-2.jpg",
+      "PackagePath": "staticwebassets\\Images\\MainStore\\uniform-2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\wwwroot\\Images\\MainStore\\uniform-3.jpg",
+      "PackagePath": "staticwebassets\\Images\\MainStore\\uniform-3.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.OnlineEcommerce.Server.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.OnlineEcommerce.Server.props",
+      "PackagePath": "build\\OnlineEcommerce.Server.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.OnlineEcommerce.Server.props",
+      "PackagePath": "buildMultiTargeting\\OnlineEcommerce.Server.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.OnlineEcommerce.Server.props",
+      "PackagePath": "buildTransitive\\OnlineEcommerce.Server.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
