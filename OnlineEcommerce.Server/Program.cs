@@ -4,6 +4,10 @@ using Microsoft.AspNetCore.Hosting.StaticWebAssets;
 using Microsoft.EntityFrameworkCore;
 using MudBlazor.Services;
 using OnlineEcommerce.Server.Data;
+using OnlineEcommerce.Server.Data.Repositories;
+using OnlineEcommerce.Server.Data.Repositories.Contracts;
+using OnlineEcommerce.Server.Services;
+using OnlineEcommerce.Server.Services.Contracts;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +16,19 @@ StaticWebAssetsLoader.UseStaticWebAssets(builder.Environment, builder.Configurat
 
 builder.Services.AddDbContextPool<ApplicationDbContext>(
             options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
+
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
+
+builder.Services.AddScoped<IVariantRepository, VariantRepository>();
+builder.Services.AddScoped<IVariantService, VariantService>();
+
+builder.Services.AddScoped<IOrganizationRepository, OrganizationRepository>();
+builder.Services.AddScoped<IVariantAttributeRepository, VariantAttributeRepository>();
+
+builder.Services.AddScoped<IProductVariantRepository, ProductVariantRepository>();
+builder.Services.AddScoped<IProductVariantService, ProductVariantService>();
+
 
 // Add services to the container.
 builder.Services.AddRazorPages();

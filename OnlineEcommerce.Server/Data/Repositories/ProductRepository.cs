@@ -25,11 +25,17 @@ namespace OnlineEcommerce.Server.Data.Repositories
             return product;
         }
 
-        public async Task<bool> CreateProduct(Product product)
+        public async Task<Product> GetByName(string name)
+        {
+            var product = await _db.Products.FirstOrDefaultAsync(x => x.Name == name);
+            return product;
+        }
+
+        public async Task<int> CreateProduct(Product product)
         {
             _db.Products.Add(product);
-            var change = await _db.SaveChangesAsync();
-            return change > 0;
+            await _db.SaveChangesAsync();
+            return product.Id;
         }
 
         public async Task<bool> DeleteProduct(Product product)

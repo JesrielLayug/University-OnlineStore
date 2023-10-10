@@ -32,11 +32,41 @@ namespace OnlineEcommerce.Server.Data
                 Id = 4,
                 Name = "Engineering Studies"
             });
+
+            modelBuilder.Entity<VariantAttribute>().HasData(new VariantAttribute
+            {
+                Id = 1,
+                Name = "Color"
+            });
+
+            modelBuilder.Entity<VariantAttribute>().HasData(new VariantAttribute
+            {
+                Id = 2,
+                Name = "Size"
+            });
+
+            modelBuilder.Entity<VariantAttribute>().HasData(new VariantAttribute
+            {
+                Id = 3,
+                Name = "Material"
+            });
+
+            modelBuilder.Entity<VariantAttribute>().HasData(new VariantAttribute
+            {
+                Id = 4,
+                Name = "Capacity"
+            });
+
+            modelBuilder.Entity<VariantAttribute>().HasData(new VariantAttribute
+            {
+                Id = 5,
+                Name = "Style"
+            });
         }
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Organization> Organizations { get; set; }
-        public DbSet<ProductAttribute> Attributes { get; set; }
+        public DbSet<VariantAttribute> Attributes { get; set; }
         public DbSet<Variant> Variants { get; set; }
         public DbSet<ProductVariant> ProductVariants { get; set; }
 

@@ -6,8 +6,9 @@ namespace OnlineEcommerce.Server.Data.Repositories.Contracts
     {
         Task<IEnumerable<Product>> GetAll();
         Task<Product> GetById(int id);
-        Task<bool> CreateProduct(Product product);
+        Task<Product> GetByName(string name);
+        Task<int> CreateProduct(Product product);
         Task<bool> UpdateProduct(Product product);
-        Task<bool> DeleteProduct(int id);
+        Task<bool> DeleteProduct(Product product);
     }
 }
