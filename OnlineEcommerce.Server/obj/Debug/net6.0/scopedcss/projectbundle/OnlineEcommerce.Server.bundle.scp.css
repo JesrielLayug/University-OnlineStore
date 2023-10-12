@@ -1,5 +1,29 @@
-/* _content/OnlineEcommerce.Server/Pages/Product/CreateProduct.razor.rz.scp.css */
-.create-heading[b-rzyqzi76vf] {
+/* _content/OnlineEcommerce.Server/Pages/Product/AddProduct.razor.rz.scp.css */
+.create-heading[b-83tq9r5j4p] {
     font-size: 22px;
     font-weight: 600;
+}
+/* _content/OnlineEcommerce.Server/Shared/Components/Loading.razor.rz.scp.css */
+.svgbox[b-kjmtzb858a] {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    --blue: rgb(148, 66, 63);
+    stroke: var(--blue);
+    stroke-width: 5;
+    fill: none;
+    stroke-dasharray: 50, 14;
+    stroke-dashoffset: 192;
+    animation: dash_682-b-kjmtzb858a 1.4s linear infinite;
+}
+
+@keyframes dash_682-b-kjmtzb858a {
+    72.5% {
+        opacity: 1;
+    }
+
+    to {
+        stroke-dashoffset: 1;
+    }
 }

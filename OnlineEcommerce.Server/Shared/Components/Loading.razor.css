@@ -1,0 +1,23 @@
+﻿.svgbox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    --blue: rgb(148, 66, 63);
+    stroke: var(--blue);
+    stroke-width: 5;
+    fill: none;
+    stroke-dasharray: 50, 14;
+    stroke-dashoffset: 192;
+    animation: dash_682 1.4s linear infinite;
+}
+
+@keyframes dash_682 {
+    72.5% {
+        opacity: 1;
+    }
+
+    to {
+        stroke-dashoffset: 1;
+    }
+}

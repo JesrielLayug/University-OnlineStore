@@ -10,5 +10,7 @@ namespace OnlineEcommerce.Server.Models.DTOs
         public int VariantId { get; set; }
         [Required]
         public int Stock { get; set; }
+        [Required]
+        public int PriceModifier { get; set; }
     }
 }

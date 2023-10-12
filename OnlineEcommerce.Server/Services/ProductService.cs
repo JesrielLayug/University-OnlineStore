@@ -38,7 +38,7 @@ namespace OnlineEcommerce.Server.Services
                 {
                     Name = product.Name,
                     Description = product.Description,
-                    ImageURL = product.ImageURL,
+                    Price = product.BasePrice,
                     OrganizationId = organizationId,
                 };
 

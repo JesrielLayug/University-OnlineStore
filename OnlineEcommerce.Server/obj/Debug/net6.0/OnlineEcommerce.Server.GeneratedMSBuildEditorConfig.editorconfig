@@ -28,8 +28,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3JkZXJcT3JkZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/LAYUG/Desktop/UniversityStore/OnlineEcommerce.Server/Pages/Product/Product.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxQcm9kdWN0LnJhem9y
+[C:/Users/LAYUG/Desktop/UniversityStore/OnlineEcommerce.Server/Pages/Product/ButtonTemplate.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxCdXR0b25UZW1wbGF0ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LAYUG/Desktop/UniversityStore/OnlineEcommerce.Server/Pages/Product/ManageProduct.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxNYW5hZ2VQcm9kdWN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LAYUG/Desktop/UniversityStore/OnlineEcommerce.Server/Pages/Product/MudFileUpload.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxNdWRGaWxlVXBsb2FkLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/LAYUG/Desktop/UniversityStore/OnlineEcommerce.Server/Pages/User/User.razor]
@@ -48,9 +56,13 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/LAYUG/Desktop/UniversityStore/OnlineEcommerce.Server/Pages/Product/CreateProduct.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxDcmVhdGVQcm9kdWN0LnJhem9y
-build_metadata.AdditionalFiles.CssScope = b-rzyqzi76vf
+[C:/Users/LAYUG/Desktop/UniversityStore/OnlineEcommerce.Server/Pages/Product/AddProduct.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxBZGRQcm9kdWN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-83tq9r5j4p
+
+[C:/Users/LAYUG/Desktop/UniversityStore/OnlineEcommerce.Server/Shared/Components/Loading.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXBvbmVudHNcTG9hZGluZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-kjmtzb858a
 
 [C:/Users/LAYUG/Desktop/UniversityStore/OnlineEcommerce.Server/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s

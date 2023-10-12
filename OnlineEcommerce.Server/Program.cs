@@ -24,6 +24,8 @@ builder.Services.AddScoped<IVariantRepository, VariantRepository>();
 builder.Services.AddScoped<IVariantService, VariantService>();
 
 builder.Services.AddScoped<IOrganizationRepository, OrganizationRepository>();
+
+builder.Services.AddScoped<IVariantAttributeService, VariantAttributeService>();
 builder.Services.AddScoped<IVariantAttributeRepository, VariantAttributeRepository>();
 
 builder.Services.AddScoped<IProductVariantRepository, ProductVariantRepository>();

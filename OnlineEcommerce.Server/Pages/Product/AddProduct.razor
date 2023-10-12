@@ -1,0 +1,46 @@
+﻿@page "/create-product"
+@using System.ComponentModel.DataAnnotations;
+@inherits AddProductBase
+
+@if(attributes == null)
+{
+    <Loading></Loading>
+}
+else
+{
+    <h3 class="create-heading">Add Product Information</h3>
+    <MudGrid Class="mt-1">
+        <MudItem xs="12" sm="7" lg="7">
+            <MudCard Class="px-2 py-2">
+                <MudCardContent Class="pa-5">
+                    <MudText Typo="Typo.h6" Class="mb-4"> Basic Information </MudText>
+                    <EditForm Model="@product">
+                        <MudTextField @bind-Value="product.Name" Label="Product Name"
+                                      Variant="Variant.Outlined"></MudTextField>
+                        <MudTextField @bind-Value="product.Description" T="string" Label="Description"
+                                      Variant="Variant.Outlined" Lines="7" Class="my-4" />
+                        <MudGrid>
+                            <MudItem xs="6">
+                                <MudTextField @bind-Value="product.BasePrice" Label="Base Price"
+                                              Variant="Variant.Outlined"></MudTextField>
+                            </MudItem>
+                        </MudGrid>
+                    </EditForm>
+                </MudCardContent>
+
+                <MudCardContent>
+                    <MudText Typo="Typo.h6" Class="mb-5">Product Variant</MudText>
+					
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+        <MudItem xs="12" sm="5" lg="5">
+            <MudPaper Class="d-flex align-center justify-center
+                         mud-width-full py-8">
+                xs=12 sm=6
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+}
+
+

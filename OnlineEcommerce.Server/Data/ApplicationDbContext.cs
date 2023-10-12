@@ -69,6 +69,7 @@ namespace OnlineEcommerce.Server.Data
         public DbSet<VariantAttribute> Attributes { get; set; }
         public DbSet<Variant> Variants { get; set; }
         public DbSet<ProductVariant> ProductVariants { get; set; }
+        public DbSet<ProductImages> ProductImages { get; set; }
 
     }
 }

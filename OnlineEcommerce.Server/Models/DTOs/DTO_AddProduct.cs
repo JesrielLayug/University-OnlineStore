@@ -9,9 +9,7 @@ namespace OnlineEcommerce.Server.Models.DTOs
         [Required]
         public string Description { get; set; }
         [Required]
-        public string ImageURL { get; set; }
-        [Required]
-        public int Qty { get; set; }
+        public int BasePrice { get; set; }
         [Required]
         public string OrganizationName { get; set; }
     }

@@ -22,6 +22,7 @@ namespace OnlineEcommerce.Server.Services
                 ProductId = productVariant.ProductId,
                 VariantId = productVariant.VariantId,
                 Stock = productVariant.Stock,
+                PriceModifier = productVariant.PriceModifier,
             };
 
             return await _productVariantRepository.AddProductVariant(domain) > 0;
