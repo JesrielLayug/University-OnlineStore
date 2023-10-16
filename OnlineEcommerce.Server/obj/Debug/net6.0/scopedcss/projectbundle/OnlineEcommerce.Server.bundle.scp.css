@@ -3,6 +3,10 @@
     font-size: 22px;
     font-weight: 600;
 }
+
+th[b-83tq9r5j4p], td[b-83tq9r5j4p] {
+    padding: 15px;
+}
 /* _content/OnlineEcommerce.Server/Shared/Components/Loading.razor.rz.scp.css */
 .svgbox[b-kjmtzb858a] {
     position: absolute;

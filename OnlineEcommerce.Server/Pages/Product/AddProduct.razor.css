@@ -2,3 +2,7 @@
     font-size: 22px;
     font-weight: 600;
 }
+
+th, td {
+    padding: 15px;
+}

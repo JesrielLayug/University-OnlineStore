@@ -8,7 +8,7 @@
     <h3 class="create-heading">Add Product Information</h3>
     <MudGrid Class="mt-1">
         <MudItem xs="12" sm="7" lg="7">
-            <MudCard Class="px-2 py-2">
+            <MudCard Class="px-2 py-2" Outlined="true">
                 <MudCardContent Class="pa-5">
                     <MudText Typo="Typo.h6" Class="mb-4"> Basic Information </MudText>
                         <MudTextField @bind-Value="product.Name" Label="Product Name"
@@ -25,16 +25,10 @@
             </MudCard>
         </MudItem>
         <MudItem xs="12" sm="7" lg="7">
-            <MudCard Class="px-2 py-2">
+            <MudCard Class="px-2 py-2" Outlined="true">
                 <MudCardContent Class="pa-5">
                     <MudText Typo="Typo.h6" Class="mb-4"> Product Size </MudText>
-                    <MudChipSet AllClosable="true" OnClose="RemoveSize">
-                        @foreach(var value in SizeVariants)
-                        {
-                            <MudChip Color="Color.Info" Text="@value.Value"></MudChip>
-                        }
-                    </MudChipSet>
-                    <MudContainer Class="d-flex justify-space-between pa-0 mt-3">
+                    <MudContainer Class="d-flex justify-space-between pa-0 mt-3 mb-6">
                         <MudTextField @bind-Value="size.Value" Label="Size"
                                   Variant="Variant.Outlined" Class="me-5"></MudTextField>
                         <MudTextField @bind-Value="@size.Price" Label="Price Modifier"
@@ -43,9 +37,17 @@
                                   Variant="Variant.Outlined" Class="me-10"></MudTextField>
                         <MudButton Variant="Variant.Filled" Color="Color.Info" OnClick="AddSize" Class="px-12 mt-1" Style="height: 4em;">Add</MudButton>
                     </MudContainer>
+
+                    <MudChipSet AllClosable="true" OnClose="RemoveSize">
+                        @foreach (var value in SizeVariants)
+                        {
+                            <MudChip Color="Color.Info" Text="@value.Value"></MudChip>
+                        }
+                    </MudChipSet>
+
                     @if(SizeVariants.Count > 0)
                     {
-                        <MudSimpleTable Dense="true" Bordered="true" Style="overflow-x: auto;" Class="mt-4">
+                        <MudSimpleTable Hover="true" Bordered="true" Outlined="true" Striped="true" Style="overflow-x: auto;" Class="mt-7">
                             <thead>
                                 <tr>
                                     <th>Size</th>
