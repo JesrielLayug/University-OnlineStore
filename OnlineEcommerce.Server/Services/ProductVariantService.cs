@@ -15,7 +15,7 @@ namespace OnlineEcommerce.Server.Services
             this._productVariantRepository = productVariantRepository;
         }
 
-        public async Task<bool> AddProductVariant(DTO_AddProductVariant productVariant)
+        public async Task<bool> AddProductVariant(DTO_ProductVariant productVariant)
         {
             var domain = new ProductVariant
             {

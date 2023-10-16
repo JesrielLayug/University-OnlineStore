@@ -2,7 +2,7 @@
 
 namespace OnlineEcommerce.Server.Models.DTOs
 {
-    public class DTO_AddProduct
+    public class DTO_Product
     {
         [Required]
         public string Name { get; set; }

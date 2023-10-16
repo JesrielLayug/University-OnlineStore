@@ -16,14 +16,15 @@ namespace OnlineEcommerce.Server.Services
             this._attribute = attribute;
         }
 
-        public async Task<Response<int>> AddVariant(DTO_AddVariant variant)
+        public async Task<Response<int>> AddVariant(DTO_Variant variant)
         {
-            var attribute = await _attribute.GetByName(variant.AttributeName);
+            var attribute = await _attribute.GetByName(variant.Attribute);
 
             var domainVariant = new Variant
             {
                 Value = variant.Value,
                 AttributeId = attribute.Id,
+                Price = variant.Price
             };
 
             var newVariant = await _variant.AddVariant(domainVariant);

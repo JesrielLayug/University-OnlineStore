@@ -17,7 +17,7 @@ namespace OnlineEcommerce.Server.Services
             this._organization = organization;
         }
 
-        public async Task<Response<int?>> CreateProduct(DTO_AddProduct product)
+        public async Task<Response<int?>> CreateProduct(DTO_Product product)
         {
             try
             {

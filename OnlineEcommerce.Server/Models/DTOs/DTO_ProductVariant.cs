@@ -2,7 +2,7 @@
 
 namespace OnlineEcommerce.Server.Models.DTOs
 {
-    public class DTO_AddProductVariant
+    public class DTO_ProductVariant
     {
         [Required]
         public int ProductId { get; set; }

@@ -2,15 +2,15 @@
 
 namespace OnlineEcommerce.Server.Models.DTOs
 {
-    public class DTO_AddVariant
+    public class DTO_Variant
     {
         [Required]
-        public string AttributeName { get; set; }  
+        public string Attribute { get; set; }  
 
         [Required]
         public string Value { get; set; }
         [Required]
-        public decimal Price { get; set; }
+        public int Price { get; set; }
 
     }
 }

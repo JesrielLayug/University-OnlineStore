@@ -4,91 +4,73 @@
 @using static MudBlazor.CategoryTypes;
 @inherits AddProductBase
 
+
     <h3 class="create-heading">Add Product Information</h3>
     <MudGrid Class="mt-1">
         <MudItem xs="12" sm="7" lg="7">
             <MudCard Class="px-2 py-2">
                 <MudCardContent Class="pa-5">
                     <MudText Typo="Typo.h6" Class="mb-4"> Basic Information </MudText>
-                    <EditForm Model="@product">
                         <MudTextField @bind-Value="product.Name" Label="Product Name"
                                       Variant="Variant.Outlined" ></MudTextField>
                         <MudTextField @bind-Value="product.Description" T="string" Label="Description"
                                       Variant="Variant.Outlined" Lines="7" Class="my-4" />
                         <MudGrid>
                             <MudItem xs="6">
-                                <MudTextField @bind-Value="product.BasePrice" Label="Base Price"
+                                <MudTextField @bind-Value="product.BasePrice" Label="Price"
                                               Variant="Variant.Outlined"></MudTextField>
                             </MudItem>
                         </MudGrid>
-                    </EditForm>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+        <MudItem xs="12" sm="7" lg="7">
+            <MudCard Class="px-2 py-2">
+                <MudCardContent Class="pa-5">
+                    <MudText Typo="Typo.h6" Class="mb-4"> Product Size </MudText>
+                    <MudChipSet AllClosable="true" OnClose="RemoveSize">
+                        @foreach(var value in SizeVariants)
+                        {
+                            <MudChip Color="Color.Info" Text="@value.Value"></MudChip>
+                        }
+                    </MudChipSet>
+                    <MudContainer Class="d-flex justify-space-between pa-0 mt-3">
+                        <MudTextField @bind-Value="size.Value" Label="Size"
+                                  Variant="Variant.Outlined" Class="me-5"></MudTextField>
+                        <MudTextField @bind-Value="@size.Price" Label="Price Modifier"
+                                      Variant="Variant.Outlined" Class="me-5"></MudTextField>
+                        <MudTextField @bind-Value="@size.Stock" Label="Stock"
+                                  Variant="Variant.Outlined" Class="me-10"></MudTextField>
+                        <MudButton Variant="Variant.Filled" Color="Color.Info" OnClick="AddSize" Class="px-12 mt-1" Style="height: 4em;">Add</MudButton>
+                    </MudContainer>
+                    @if(SizeVariants.Count > 0)
+                    {
+                        <MudSimpleTable Dense="true" Bordered="true" Style="overflow-x: auto;" Class="mt-4">
+                            <thead>
+                                <tr>
+                                    <th>Size</th>
+                                    <th>Price Modifier</th>
+                                    <th>Stock</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                @foreach (var v in SizeVariants)
+                                {
+                                    <tr>
+                                        <td>@v.Value</td>
+                                        <td>@v.Price</td>
+                                        <td>@v.Stock</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </MudSimpleTable>
+                    }
                 </MudCardContent>
             </MudCard>
         </MudItem>
         <MudItem xs="12" sm="4" lg="4">
-            <MudCard>
-                <MudCardContent>
-                    <MudCardHeader Class="d-flex justify-space-between pa-0">
-                        <MudText Typo="Typo.h6" Class="py-2">Product Variant</MudText>
-                        <MudButton OnClick="OpenAddNewSection" Variant="Variant.Outlined" StartIcon="@Icons.Material.Filled.Add" Color="Color.Info" Class="rounded-lg py-2">Add Variant</MudButton>
-                    </MudCardHeader>
-                    <MudDropContainer T="KanbanItem" @ref="_dropContainer" Items="@_variant" ItemsSelector="@((item,column) => item.Attribute == column)"
-                                      ItemDropped="ValueUpdated" Class="d-flex flex-row">
-
-                        <ChildContent>
-                            <MudPaper Class="mt-7" Elevation="0" Width="100%">
-                                @foreach (var item in _sections)
-                                {
-                                    <MudPaper Elevation="0" Width="inherit" MinHeight="170px" Outlined="true" Class="px-4 pb-4 d-flex flex-column rounded-lg">
-                                        <MudToolBar DisableGutters="true">
-                                            <MudText Typo="Typo.subtitle1"><b>@item.Name</b></MudText>
-                                            <MudSpacer />
-                                            <MudMenu Icon="@Icons.Material.Rounded.MoreHoriz" AnchorOrigin="Origin.BottomRight" TransformOrigin="Origin.TopRight" ListClass="pa-2 d-flex flex-column" PopoverClass="mud-elevation-25">
-                                                <MudButton Size="Size.Small" Color="Color.Error" StartIcon="@Icons.Material.Outlined.Delete" OnClick="@( () => DeleteSection(item))">Delete Section</MudButton>
-                                                <MudButton Size="Size.Small" Color="Color.Default" StartIcon="@Icons.Material.Rounded.Edit">Rename Section</MudButton>
-                                            </MudMenu>
-                                        </MudToolBar>
-                                        <MudDropZone T="KanbanItem" Identifier="@item.Name" Class="mud-height-full" />
-                                        @if (item.NewTaskOpen)
-                                        {
-                                            <MudPaper Elevation="25" Class="pa-2 rounded-lg">
-                                                <MudTextField @bind-Value="item.NewTaskName" Placeholder="New Variant" DisableUnderLine="true" Margin="Margin.Dense" Class="mx-2 mt-n2"></MudTextField>
-                                                <MudButton OnClick="@(() => AddVariant(item))" Size="Size.Small" Color="Color.Info" FullWidth="true">Add Variant</MudButton>
-                                            </MudPaper>
-                                        }
-                                        else
-                                        {
-                                            <MudButton OnClick="@(() => item.NewTaskOpen = !item.NewTaskOpen)" StartIcon="@Icons.Material.Filled.Add" FullWidth="true" Class="rounded-lg py-2">Add Variant</MudButton>
-                                        }
-                                    </MudPaper>
-                                }
-                                @if (_addSectionOpen)
-                                {
-                                    <MudPaper Elevation="0" Outlined="true" Square="true" Width="inherit" Class="pa-4 mt-3 d-flex flex-column rounded-lg outlined">
-                                        <EditForm Model="@newSectionModel" OnValidSubmit="OnValidSectionSubmit">
-                                            <DataAnnotationsValidator />
-                                            <MudSelect Dense="true" Label="Select Attribute" T="string" Variant="Variant.Outlined" @bind-Value="newSectionModel.AttributeName"
-                                                       For="@(() => newSectionModel.AttributeName)">
-                                                @foreach (var _attribute in variantAttribute)
-                                                {
-                                                    <MudSelectItem Value="@(_attribute.Name)" />
-                                                }
-                                            </MudSelect>
-                                            <MudButton ButtonType="ButtonType.Submit" Size="Size.Small" Color="Color.Info" FullWidth="true">Add Attribute</MudButton>
-                                        </EditForm>
-                                    </MudPaper>
-                                }
-                            </MudPaper>
-                        </ChildContent>
-                        <ItemRenderer>
-                            <MudPaper Elevation="25" Class="pa-4 rounded-lg my-3">@context.Value</MudPaper>
-                        </ItemRenderer>
-                    </MudDropContainer>
-
-                </MudCardContent>
-            </MudCard>
         </MudItem>
     </MudGrid>
-
 
 
