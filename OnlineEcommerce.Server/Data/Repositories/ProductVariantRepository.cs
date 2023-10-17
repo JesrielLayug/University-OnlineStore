@@ -1,4 +1,5 @@
-﻿using OnlineEcommerce.Server.Data.Repositories.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using OnlineEcommerce.Server.Data.Repositories.Contracts;
 using OnlineEcommerce.Server.Models;
 using OnlineEcommerce.Server.Models.DTOs;
 
@@ -18,6 +19,12 @@ namespace OnlineEcommerce.Server.Data.Repositories
             _db.ProductVariants.Add(productVariant);
             await _db.SaveChangesAsync();
             return productVariant.Id;
+        }
+
+        public async Task<int?> GetProductVariantBySKU(string SKU)
+        {
+            var product = await _db.ProductVariants.FirstOrDefaultAsync(p => p.SKU == SKU);
+            return product.ProductId;
         }
     }
 }

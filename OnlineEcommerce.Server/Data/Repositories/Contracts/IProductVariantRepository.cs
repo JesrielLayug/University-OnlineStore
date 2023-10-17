@@ -6,5 +6,6 @@ namespace OnlineEcommerce.Server.Data.Repositories.Contracts
     public interface IProductVariantRepository
     {
         Task<int> AddProductVariant(ProductVariant productVariant);
+        Task<int?> GetProductVariantBySKU(string SKU);
     }
 }

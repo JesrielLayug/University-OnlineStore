@@ -20,16 +20,10 @@ builder.Services.AddDbContextPool<ApplicationDbContext>(
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 
-builder.Services.AddScoped<IVariantRepository, VariantRepository>();
-builder.Services.AddScoped<IVariantService, VariantService>();
-
 builder.Services.AddScoped<IOrganizationRepository, OrganizationRepository>();
 
-builder.Services.AddScoped<IVariantAttributeService, VariantAttributeService>();
-builder.Services.AddScoped<IVariantAttributeRepository, VariantAttributeRepository>();
 
 builder.Services.AddScoped<IProductVariantRepository, ProductVariantRepository>();
-builder.Services.AddScoped<IProductVariantService, ProductVariantService>();
 
 
 // Add services to the container.

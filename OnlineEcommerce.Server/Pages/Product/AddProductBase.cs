@@ -4,25 +4,49 @@ using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
 using MudBlazor.Utilities;
 using OnlineEcommerce.Server.Component_Models;
-using OnlineEcommerce.Server.Element_Models;
-using OnlineEcommerce.Server.Models;
 using OnlineEcommerce.Server.Models.DTOs;
-using OnlineEcommerce.Server.Services.Contracts;
-using System.Threading.Tasks;
+using OnlineEcommerce.Server.Utilities;
 
 namespace OnlineEcommerce.Server.Pages.Product
 {
     public class AddProductBase : ComponentBase
     {
-        public DTO_Product product = new DTO_Product();
-        public List<ComponentProductVariant> SizeVariants = new List<ComponentProductVariant>();
-        public ComponentProductVariant size = new ComponentProductVariant();
+        public ComponentProduct product = new ComponentProduct();
+        public ComponentProductVariant variant = new ComponentProductVariant();
+        public List<ComponentProductVariant> Variants;
 
-        public void AddSize()
+        public AddProductBase()
         {
-            SizeVariants.Add(size);
+            LoadsVariants().Wait();
         }
-        public void RemoveSize(MudChip chip) => SizeVariants.Remove(size);
-	}
+
+        public void AddVariant()
+        {
+            StaticListProductVariant.AddVariant(new ComponentProductVariant
+            {
+                Color = variant.Color,
+                Size = variant.Size,
+                PriceModifier = variant.PriceModifier,
+                Stock = variant.Stock,
+            });
+        }
+
+        public void RemoveVariant(MudChip chip)
+        {
+            string chipText = chip.Text;
+            ComponentProductVariant variantToRemove = Variants.FirstOrDefault(v => v.Size == chipText || v.Color == chipText);
+
+            if (variantToRemove != null)
+            {
+                StaticListProductVariant.RemoveVariant(variantToRemove);
+            }
+        }
+
+        public async Task LoadsVariants()
+        {
+            Variants = StaticListProductVariant.GetVariants();
+        }
+
+    }
 }
 

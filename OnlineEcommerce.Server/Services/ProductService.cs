@@ -3,6 +3,7 @@ using OnlineEcommerce.Server.Data.Repositories.Contracts;
 using OnlineEcommerce.Server.Models;
 using OnlineEcommerce.Server.Models.DTOs;
 using OnlineEcommerce.Server.Services.Contracts;
+using OnlineEcommerce.Server.Utilities;
 
 namespace OnlineEcommerce.Server.Services
 {
@@ -10,18 +11,20 @@ namespace OnlineEcommerce.Server.Services
     {
         private readonly IProductRepository _product;
         private readonly IOrganizationRepository _organization;
+        private readonly IProductVariantRepository _productVariant;
 
-        public ProductService(IProductRepository product, IOrganizationRepository organization)
+        public ProductService(IProductRepository product, IOrganizationRepository organization, IProductVariantRepository productVariant)
         {
             this._product = product;
             this._organization = organization;
+            this._productVariant = productVariant;
         }
 
         public async Task<Response<int?>> CreateProduct(DTO_Product product)
         {
             try
             {
-                var productExist = await _product.GetByName(product.Name);
+                var productExist = await _productVariant.GetProductVariantBySKU(product.SKU);
                 if (productExist != null)
                 {
                     return new Response<int?>
@@ -36,19 +39,30 @@ namespace OnlineEcommerce.Server.Services
                 
                 var domainProduct = new Product
                 {
-                    Name = product.Name,
+                    Name = product.ProductName,
                     Description = product.Description,
                     Price = product.BasePrice,
                     OrganizationId = organizationId,
                 };
 
-                var newProduct = await _product.CreateProduct(domainProduct);
+                var newProduct = await _product.CreateProduct(domainProduct); // returns the new productId
+                var productSku = SKUGenerator.GenerateSKU(product.ProductName, product.OrganizationName, newProduct);
+
+                var domainProductVariant = new ProductVariant
+                {
+                    ProductId = newProduct,
+                    Size = product.Size,
+                    Color = product.Color,
+                    Stock = product.Stock,
+                    PriceModifier = product.PriceModifier,
+                    SKU = productSku,
+                };
 
                 return new Response<int?>
                 {
                     IsSuccess = true,
                     StatusMessage = "The product is successfully created.",
-                    Data = newProduct
+                    Data = await _productVariant.AddProductVariant(domainProductVariant)
                 };
             }
             catch (Exception)
