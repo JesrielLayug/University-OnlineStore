@@ -6,91 +6,113 @@
 @inject ISnackbar Snackbar
 
 
-    <h3 class="create-heading">Add Product Information</h3>
-    <MudGrid Class="mt-1">
-        <MudItem xs="12">
-            <MudCard Class="px-2 py-2" Outlined="true">
-                <MudCardContent Class="pa-5">
-                    <MudText Typo="Typo.h6" Class="mb-4"> Basic Information </MudText>
-                    <MudGrid>
-                        <MudItem xs="12" md="6">
-                            <MudGrid>
-                                <MudItem xs="6">
-                                    <MudTextField @bind-Value="product.Name" Label="Product Name"
-                                                  Variant="Variant.Outlined"></MudTextField>
-                                </MudItem>
-                                <MudItem xs="6">
-                                    <MudTextField @bind-Value="product.BasePrice" Label="Price"
-                                                  Variant="Variant.Outlined"></MudTextField>
-                                </MudItem>
-                            </MudGrid>
-                            <MudTextField @bind-Value="product.Description" T="string" Label="Description"
-                                          Variant="Variant.Outlined" Lines="7" Class="my-4" />
-                        </MudItem>
-                        <MudItem xs="12" md="6">
-                            
-                        </MudItem>
-                    </MudGrid>
-                </MudCardContent>
-            </MudCard>
-        </MudItem>
-        <MudItem xs="12">
-            <MudCard Class="px-2 py-2" Outlined="true">
-                <MudCardContent Class="pa-5">
-                    <MudText Typo="Typo.h6" Class="mb-4"> Product Variant </MudText>
-                    <MudContainer Class="d-flex justify-space-between pa-0 mt-3 mb-6">
-                        <MudTextField @bind-Value="variant.Size" Label="Size"
-                                  Variant="Variant.Outlined" Class="me-5"></MudTextField>
-                        <MudColorPicker @bind-Value="variant.Color" Label="Color" Class="me-5" Variant="Variant.Outlined" ColorPickerView="ColorPickerView.Grid" />
-                        <MudTextField @bind-Value="@variant.PriceModifier" Label="Price Modifier"
-                                      Variant="Variant.Outlined" Class="me-5"></MudTextField>
-                        <MudTextField @bind-Value="@variant.Stock" Label="Stock"
-                                  Variant="Variant.Outlined" Class="me-10"></MudTextField>
-                        <MudButton Variant="Variant.Filled" Color="Color.Info" OnClick="AddVariant" Class="px-12 mt-1" Style="height: 4em;">Add</MudButton>
-                    </MudContainer>
+<h3 class="create-heading">Add Product</h3>
+<MudText Typo="Typo.body1" Class="my-4" Style="font-size: 14px; color: #8f8f8fff;">
+    The most important feature in the product editing section is the product adding part.
+    When adding products here, do not ignore to fill in all the required fields completely and follow the 
+    product adding rules
+</MudText>
+<MudDivider Class="my-8"/>
+<MudGrid Class="mt-1">
+    <MudItem xs="12">
+        <MudGrid>
+            <MudItem xs="12" lg="4">
+                <MudText Typo="Typo.subtitle2" Style="font-size: 20px;">Product Information</MudText>
+                <MudText Typo="Typo.caption" Style="font-size: 14px; color: #8f8f8fff;">
+                    Give your product a name and a description. <br/>
+                    You may also include the materials or style in the description section.
+                    </MudText>
+            </MudItem>
+            <MudItem xs="12" lg="8">
+                <MudCard Class="px-2 py-2" Outlined="true">
+                    <MudCardContent Class="pa-5">
+                        <MudGrid>
+                            <MudItem xs="6">
+                                <MudTextField @bind-Value="product.Name" Label="Product Name"
+                                              Variant="Variant.Outlined"></MudTextField>
+                            </MudItem>
+                            <MudItem xs="6">
+                                <MudTextField @bind-Value="product.BasePrice" Label="Price"
+                                              Variant="Variant.Outlined"></MudTextField>
+                            </MudItem>
+                        </MudGrid>
+                        <MudTextField @bind-Value="product.Description" T="string" Label="Description"
+                                      Variant="Variant.Outlined" Lines="7" Class="my-6" />
+                        <MudText Typo="Typo.caption" Style="font-size: 12px; color: #8f8f8fff;">
+                            Do not exceed 200 characters when entering the product description.
+                        </MudText>
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+        </MudGrid>
+    </MudItem>
+    <MudItem xs="12" Class="my-8">
+        <MudGrid>
+            <MudItem xs="12" lg="4">
+                <MudText Typo="Typo.subtitle2" Style="font-size: 20px;">Product Variant</MudText>
+                <MudText Typo="Typo.subtitle1" Style="font-size: 14px; color: #8f8f8fff;">
+                    Manage variants of the product. <br />
+                    Price modifier is the amount added depending on the size and color of the product.
+                </MudText>
+            </MudItem>
+            <MudItem xs="12" lg="8">
+                <MudCard Class="px-2 py-2" Outlined="true">
+                    <MudCardContent Class="pa-5">
+                        <MudContainer Class="d-flex justify-space-between pa-0 mt-3 mb-6">
+                            <MudTextField @bind-Value="variant.Size" Label="Size"
+                                          Variant="Variant.Outlined" Class="me-5"></MudTextField>
+                            <MudColorPicker @bind-Value="variant.Color" Label="Color" Class="me-5" Variant="Variant.Outlined" ColorPickerView="ColorPickerView.Grid" />
+                            <MudTextField @bind-Value="@variant.PriceModifier" Label="Price Modifier"
+                                          Variant="Variant.Outlined" Class="me-5"></MudTextField>
+                            <MudTextField @bind-Value="@variant.Stock" Label="Stock"
+                                          Variant="Variant.Outlined" Class="me-10"></MudTextField>
+                            <MudButton Variant="Variant.Filled" Color="Color.Info" OnClick="AddVariant" Class="px-12 mt-1" Style="height: 4em;">Add</MudButton>
+                        </MudContainer>
 
-                    @if (Variants.Count > 0)
-                    {
-                        <MudText Typo="Typo.subtitle1">Sizes</MudText>
-                        <MudChipSet AllClosable="true" OnClose="RemoveVariant">
-                            @foreach (var size in Variants)
-                            {
-                                <MudChip Color="Color.Info" Text="@size.Size"></MudChip>
-                            }
-                        </MudChipSet>
-
-                        <MudText Typo="Typo.subtitle1" Class="mt-3">Colors</MudText>
-                        <MudChipSet AllClosable="true" OnClose="RemoveVariant">
-                            @foreach (var color in Variants)
-                            {
-                                <MudChip Color="Color.Info" Text="@color.Color.ToString()"></MudChip>
-                            }
-                        </MudChipSet>
-
-                        <MudSimpleTable Hover="true" Bordered="true" Outlined="true" Striped="true" Style="overflow-x: auto;" Class="mt-7">
-                            <thead>
-                                <tr>
-                                    <th>Size</th>
-                                    <th>Color</th>
-                                    <th>Price Modifier</th>
-                                    <th>Stock</th>
-                                </tr>
-
-                            </thead>
-                            <tbody>
-                                @foreach (var v in Variants)
+                        @if (Variants.Count > 0)
+                        {
+                            <MudText Typo="Typo.subtitle1">Sizes</MudText>
+                            <MudChipSet AllClosable="true" OnClose="RemoveVariant">
+                                @foreach (var size in Variants)
                                 {
-                                    <tr>
-                                        <td>@v.Size</td>
-                                        <td>@v.Color</td>
-                                        <td>@v.PriceModifier</td>
-                                        <td>@v.Stock</td>
-                                    </tr>
+                                    <MudChip Color="Color.Info" Text="@size.Size"></MudChip>
                                 }
-                            </tbody>
-                        </MudSimpleTable>
-                    }
-                </MudCardContent>
-            </MudCard>
-        </MudItem>
-    </MudGrid>
+                            </MudChipSet>
+
+                            <MudText Typo="Typo.subtitle1" Class="mt-3">Colors</MudText>
+                            <MudChipSet AllClosable="true" OnClose="RemoveVariant">
+                                @foreach (var color in Variants)
+                                {
+                                    <MudChip Color="Color.Info" Text="@color.Color.ToString()"></MudChip>
+                                }
+                            </MudChipSet>
+
+                            <MudSimpleTable Hover="true" Bordered="true" Outlined="true" Striped="true" Style="overflow-x: auto;" Class="mt-7">
+                                <thead>
+                                    <tr>
+                                        <th>Size</th>
+                                        <th>Color</th>
+                                        <th>Price Modifier</th>
+                                        <th>Stock</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    @foreach (var v in Variants)
+                                    {
+                                        <tr>
+                                            <td>@v.Size</td>
+                                            <td>@v.Color</td>
+                                            <td>@v.PriceModifier</td>
+                                            <td>@v.Stock</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </MudSimpleTable>
+                        }
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+        </MudGrid>
+    </MudItem>
+</MudGrid>
