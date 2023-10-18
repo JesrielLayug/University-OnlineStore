@@ -12,11 +12,16 @@
         <MudIconButton Icon="@Icons.Custom.Brands.MudBlazor" Color="Color.Inherit" Link="https://mudblazor.com/" Target="_blank" />
         <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/MudBlazor/MudBlazor/" Target="_blank" />
     </MudAppBar>
-    <MudDrawer @bind-Open="_drawerOpen" Elevation="1">
-        <MudText Typo="Typo.h6" Class="px-4 mt-1">ADMIN</MudText>
-        <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">System Management</MudText>
-        <MudDivider Class="my-2" />
-        <NavMenu/>
+    <MudDrawer @bind-Open="_drawerOpen" Elevation="1" Variant="@DrawerVariant.Responsive" Class="d-flex flex-column">
+        <MudCard Elevation="0" Class="ma-0 pa-0">
+                <MudText Typo="Typo.h6" Class="px-4 mt-1">ADMIN</MudText>
+                <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">System Management</MudText>
+                <MudDivider Class="my-2" />
+            <MudCardContent Class="pa-0 ma-0">
+                <NavMenu />
+            </MudCardContent>
+        </MudCard>
+        
     </MudDrawer>
     <MudMainContent>
         <MudContainer MaxWidth="MaxWidth.Large" Class="pt-5">

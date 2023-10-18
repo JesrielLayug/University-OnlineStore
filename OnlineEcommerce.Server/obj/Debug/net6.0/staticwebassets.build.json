@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "huaYDvn/XZE2yZG6latDCkypOO42wdgZobLEAHGDs6U=",
+  "Hash": "+MFLu6KEs1mTbL5bQkTrRiKrD7cXgtyDJY8Zai/Xkfg=",
   "Source": "OnlineEcommerce.Server",
   "BasePath": "_content/OnlineEcommerce.Server",
   "Mode": "Default",
@@ -17,10 +17,10 @@
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\LAYUG\\.nuget\\packages\\mudblazor\\6.0.13\\staticwebassets\\MudBlazor.min.css",
+      "Identity": "C:\\Users\\LAYUG\\.nuget\\packages\\mudblazor\\6.11.0\\staticwebassets\\MudBlazor.min.css",
       "SourceId": "MudBlazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\LAYUG\\.nuget\\packages\\mudblazor\\6.0.13\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\LAYUG\\.nuget\\packages\\mudblazor\\6.11.0\\staticwebassets\\",
       "BasePath": "_content/MudBlazor",
       "RelativePath": "MudBlazor.min.css",
       "AssetKind": "All",
@@ -31,30 +31,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\LAYUG\\.nuget\\packages\\mudblazor\\6.0.13\\staticwebassets\\MudBlazor.min.css"
+      "OriginalItemSpec": "C:\\Users\\LAYUG\\.nuget\\packages\\mudblazor\\6.11.0\\staticwebassets\\MudBlazor.min.css"
     },
     {
-      "Identity": "C:\\Users\\LAYUG\\.nuget\\packages\\mudblazor\\6.0.13\\staticwebassets\\MudBlazor.min.css.gz",
+      "Identity": "C:\\Users\\LAYUG\\.nuget\\packages\\mudblazor\\6.11.0\\staticwebassets\\MudBlazor.min.js",
       "SourceId": "MudBlazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\LAYUG\\.nuget\\packages\\mudblazor\\6.0.13\\staticwebassets\\",
-      "BasePath": "_content/MudBlazor",
-      "RelativePath": "MudBlazor.min.css.gz",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\LAYUG\\.nuget\\packages\\mudblazor\\6.0.13\\staticwebassets\\MudBlazor.min.css.gz"
-    },
-    {
-      "Identity": "C:\\Users\\LAYUG\\.nuget\\packages\\mudblazor\\6.0.13\\staticwebassets\\MudBlazor.min.js",
-      "SourceId": "MudBlazor",
-      "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\LAYUG\\.nuget\\packages\\mudblazor\\6.0.13\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\LAYUG\\.nuget\\packages\\mudblazor\\6.11.0\\staticwebassets\\",
       "BasePath": "_content/MudBlazor",
       "RelativePath": "MudBlazor.min.js",
       "AssetKind": "All",
@@ -65,24 +48,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\LAYUG\\.nuget\\packages\\mudblazor\\6.0.13\\staticwebassets\\MudBlazor.min.js"
-    },
-    {
-      "Identity": "C:\\Users\\LAYUG\\.nuget\\packages\\mudblazor\\6.0.13\\staticwebassets\\MudBlazor.min.js.gz",
-      "SourceId": "MudBlazor",
-      "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\LAYUG\\.nuget\\packages\\mudblazor\\6.0.13\\staticwebassets\\",
-      "BasePath": "_content/MudBlazor",
-      "RelativePath": "MudBlazor.min.js.gz",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\LAYUG\\.nuget\\packages\\mudblazor\\6.0.13\\staticwebassets\\MudBlazor.min.js.gz"
+      "OriginalItemSpec": "C:\\Users\\LAYUG\\.nuget\\packages\\mudblazor\\6.11.0\\staticwebassets\\MudBlazor.min.js"
     },
     {
       "Identity": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\obj\\Debug\\net6.0\\scopedcss\\bundle\\OnlineEcommerce.Server.styles.css",

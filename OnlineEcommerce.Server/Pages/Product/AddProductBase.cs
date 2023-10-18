@@ -12,6 +12,8 @@ namespace OnlineEcommerce.Server.Pages.Product
     public class AddProductBase : ComponentBase
     {
         public ComponentProduct product = new ComponentProduct();
+
+        // Variant Section
         public ComponentProductVariant variant = new ComponentProductVariant();
         public List<ComponentProductVariant> Variants;
 
@@ -45,6 +47,31 @@ namespace OnlineEcommerce.Server.Pages.Product
         public async Task LoadsVariants()
         {
             Variants = StaticListProductVariant.GetVariants();
+        }
+
+        // Image Section
+        public static string DefaultDragClass = "relative rounded-lg border-2 border-dashed pa-4 mud-width-full mud-height-full z-10";
+        public string DragClass = DefaultDragClass;
+        public List<string> imageUrl = new List<string>();
+
+        public void OnInputImageChanged(InputFileChangeEventArgs e)
+        {
+            ClearDragClass();
+            var images = e.GetMultipleFiles();
+            foreach (var image in images)
+            {
+                imageUrl.Add(image.Name);
+            }
+        }
+
+        public void SetDragClass()
+        {
+            DragClass = $"{DefaultDragClass} mud-border-primary";
+        }
+
+        public void ClearDragClass()
+        {
+            DragClass = DefaultDragClass;
         }
 
     }

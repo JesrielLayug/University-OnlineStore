@@ -76,3 +76,5 @@ C:\Users\LAYUG\Desktop\UniversityStore\OnlineEcommerce.Server\obj\Debug\net6.0\r
 C:\Users\LAYUG\Desktop\UniversityStore\OnlineEcommerce.Server\obj\Debug\net6.0\scopedcss\projectbundle\OnlineEcommerce.Server.bundle.scp.css
 C:\Users\LAYUG\Desktop\UniversityStore\OnlineEcommerce.Server\obj\Debug\net6.0\scopedcss\Pages\Product\AddProduct.razor.rz.scp.css
 C:\Users\LAYUG\Desktop\UniversityStore\OnlineEcommerce.Server\obj\Debug\net6.0\scopedcss\Shared\Components\Loading.razor.rz.scp.css
+C:\Users\LAYUG\Desktop\UniversityStore\OnlineEcommerce.Server\bin\Debug\net6.0\Microsoft.Extensions.Localization.dll
+C:\Users\LAYUG\Desktop\UniversityStore\OnlineEcommerce.Server\bin\Debug\net6.0\Microsoft.Extensions.Localization.Abstractions.dll

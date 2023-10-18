@@ -1,6 +1,5 @@
 ﻿@page "/create-product"
 @using System.ComponentModel.DataAnnotations;
-@using OnlineEcommerce.Server.Element_Models;
 @using static MudBlazor.CategoryTypes;
 @inherits AddProductBase
 @inject ISnackbar Snackbar
@@ -21,7 +20,7 @@
                 <MudText Typo="Typo.caption" Style="font-size: 14px; color: #8f8f8fff;">
                     Give your product a name and a description. <br/>
                     You may also include the materials or style in the description section.
-                    </MudText>
+                </MudText>
             </MudItem>
             <MudItem xs="12" lg="8">
                 <MudCard Class="px-2 py-2" Outlined="true">
@@ -46,6 +45,52 @@
             </MudItem>
         </MudGrid>
     </MudItem>
+
+    <MudItem xs="12" Class="mt-8">
+        <MudGrid>
+            <MudItem xs="12" lg="4">
+                <MudText Typo="Typo.subtitle2" Style="font-size: 20px;">Product Images</MudText>
+                <MudText Typo="Typo.subtitle1" Style="font-size: 14px; color: #8f8f8fff;">
+                    You need to add atleast 4 images. Pay Attention to the quality of the pictures you add, comply
+                    with the background color standards. Pictures must be in certain dimensions.
+                </MudText>
+            </MudItem>
+            <MudItem xs="12" lg="8">
+                <MudCard Class="py-4 px-4 d-flex align-center" Outlined="true">
+                    <MudStack Style="width: 300px" Class="me-4">
+                        <MudBlazor.MudFileUpload T="IReadOnlyList<IBrowserFile>" Accept=".png, .jpg" OnFilesChanged="OnInputImageChanged"
+                                       AppendMultipleFiles Hidden="false" Class="flex-1" InputClass="absolute mud-width-full mud-height-full overflow-hidden z-20" 
+                                       InputStyle="opacity:0" @ondragenter="@SetDragClass" @ondragleave="@ClearDragClass" @ondragend="@ClearDragClass">
+
+                            <ButtonTemplate>
+                                <MudPaper Height="200px" Outlined="true" Class="@DragClass">
+                                    @if(imageUrl.Count == 0)
+                                    {
+                                        <MudText Typo="Typo.subtitle2">Drag and drop files here or click</MudText>
+                                    }
+                                    else
+                                    {
+                                        @foreach (var image in imageUrl)
+                                        {
+                                            <MudChip Color="Color.Info" Text="@image" />
+                                        }
+                                    }
+                                </MudPaper>
+                            </ButtonTemplate>
+                        </MudBlazor.MudFileUpload>
+                    </MudStack>
+                    <MudContainer Class="pa-5 mt-0 d-flex" Style="overflow-x: scroll; max-height: 220px">
+                        <MudImage Src="images/MainStore/pe-3.jpg" Width="200" Height="150" ObjectFit="ObjectFit.Cover" Alt="Swedish Farm House" Elevation="0" Class="rounded me-4" />
+                        <MudImage Src="images/MainStore/pe-3.jpg" Width="200" Height="150" ObjectFit="ObjectFit.Cover" Alt="Swedish Farm House" Elevation="0" Class="rounded me-4" />
+                        <MudImage Src="images/MainStore/pe-3.jpg" Width="200" Height="150" ObjectFit="ObjectFit.Cover" Alt="Swedish Farm House" Elevation="0" Class="rounded me-4" />
+                        <MudImage Src="images/MainStore/pe-3.jpg" Width="200" Height="150" ObjectFit="ObjectFit.Cover" Alt="Swedish Farm House" Elevation="0" Class="rounded me-4" />
+                        <MudImage Src="images/MainStore/pe-3.jpg" Width="200" Height="150" ObjectFit="ObjectFit.Cover" Alt="Swedish Farm House" Elevation="0" Class="rounded me-4" />
+                    </MudContainer>
+                </MudCard>
+            </MudItem>
+        </MudGrid>
+    </MudItem>
+
     <MudItem xs="12" Class="my-8">
         <MudGrid>
             <MudItem xs="12" lg="4">
