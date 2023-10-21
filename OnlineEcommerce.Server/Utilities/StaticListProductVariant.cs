@@ -2,6 +2,15 @@
 
 namespace OnlineEcommerce.Server.Utilities
 {
+    public class EventArgsVariant : EventArgs
+    {
+        public ComponentProductVariant _variant { get; }
+        public EventArgsVariant(ComponentProductVariant variant)
+        {
+            _variant = variant;
+        }
+    }
+
     public static class StaticListProductVariant
     {
         private static List<ComponentProductVariant> Variants = new List<ComponentProductVariant>();
@@ -10,7 +19,6 @@ namespace OnlineEcommerce.Server.Utilities
 
         public static void AddVariant(ComponentProductVariant variant)
         {
-            bool variantExist = Variants.Any(v => v.Color == variant.Color && v.Size == variant.Size);
             Variants.Add(variant);
             VariantAdded(variant);
         }

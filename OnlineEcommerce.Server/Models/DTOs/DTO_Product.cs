@@ -16,6 +16,6 @@ namespace OnlineEcommerce.Server.Models.DTOs
         public int PriceModifier { get; set; }
         public string SKU { get; set; }
         public int OrganizationId { get; set; }
-        public string OrganizationName { get; set; } = "Main";
+        public string OrganizationName { get; set; } = "COOP";
     }
 }

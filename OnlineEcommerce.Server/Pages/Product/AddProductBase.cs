@@ -12,14 +12,16 @@ namespace OnlineEcommerce.Server.Pages.Product
     public class AddProductBase : ComponentBase
     {
         public ComponentProduct product = new ComponentProduct();
-
-        // Variant Section
         public ComponentProductVariant variant = new ComponentProductVariant();
         public List<ComponentProductVariant> Variants;
+        public List<ComponentProductImages> ProductImages;
+        public ComponentProductImages productImage;
+
+        public bool _processing = false;
 
         public AddProductBase()
         {
-            LoadsVariants().Wait();
+            LoadsComponents().Wait();
         }
 
         public void AddVariant()
@@ -33,45 +35,55 @@ namespace OnlineEcommerce.Server.Pages.Product
             });
         }
 
-        public void RemoveVariant(MudChip chip)
+        public void RemoveChip(MudChip chip)
         {
             string chipText = chip.Text;
             ComponentProductVariant variantToRemove = Variants.FirstOrDefault(v => v.Size == chipText || v.Color == chipText);
+            ComponentProductImages imageToRemove = ProductImages.FirstOrDefault(i => i.Url == chipText);
 
             if (variantToRemove != null)
             {
                 StaticListProductVariant.RemoveVariant(variantToRemove);
             }
-        }
 
-        public async Task LoadsVariants()
-        {
-            Variants = StaticListProductVariant.GetVariants();
-        }
-
-        // Image Section
-        public static string DefaultDragClass = "relative rounded-lg border-2 border-dashed pa-4 mud-width-full mud-height-full z-10";
-        public string DragClass = DefaultDragClass;
-        public List<string> imageUrl = new List<string>();
-
-        public void OnInputImageChanged(InputFileChangeEventArgs e)
-        {
-            ClearDragClass();
-            var images = e.GetMultipleFiles();
-            foreach (var image in images)
+            if(imageToRemove != null)
             {
-                imageUrl.Add(image.Name);
+                StaticListProductImage.RemoveImage(imageToRemove);
             }
         }
 
-        public void SetDragClass()
+        public async Task OnInputImageChanged(InputFileChangeEventArgs e)
         {
-            DragClass = $"{DefaultDragClass} mud-border-primary";
+            var format = "image/png";
+            var images =  e.GetMultipleFiles(int.MaxValue);
+
+            foreach (var image in images)
+            {
+                var resizedImage = await image.RequestImageFileAsync(format, 200, 200);
+                var buffer = new byte[resizedImage.Size];
+                await resizedImage.OpenReadStream().ReadAsync(buffer);
+                var imageData = $"data:{format};base64,{Convert.ToBase64String(buffer)}" ;
+                productImage = new ComponentProductImages
+                {
+                    Url = image.Name,
+                    Data = imageData
+                };
+                StaticListProductImage.AddImage(productImage);
+            }
         }
 
-        public void ClearDragClass()
+
+        public async Task LoadsComponents()
         {
-            DragClass = DefaultDragClass;
+            Variants = StaticListProductVariant.GetVariants();
+            ProductImages = StaticListProductImage.GetImages();
+        }
+
+        public async Task AddingProductProcessing()
+        {
+            _processing = true;
+            await Task.Delay(2000);
+            _processing = false;
         }
 
     }
