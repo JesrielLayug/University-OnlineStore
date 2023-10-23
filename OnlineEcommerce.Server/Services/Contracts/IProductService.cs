@@ -5,6 +5,6 @@ namespace OnlineEcommerce.Server.Services.Contracts
 {
     public interface IProductService
     {
-        Task<Response<int?>> CreateProduct(DTO_Product product);
+        Task<Response> CreateProduct(DTO_Product product);
     }
 }

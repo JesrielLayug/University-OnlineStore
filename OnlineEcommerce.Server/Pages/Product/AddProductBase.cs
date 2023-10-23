@@ -4,18 +4,28 @@ using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
 using MudBlazor.Utilities;
 using OnlineEcommerce.Server.Component_Models;
+using OnlineEcommerce.Server.Models;
 using OnlineEcommerce.Server.Models.DTOs;
+using OnlineEcommerce.Server.Services.Contracts;
 using OnlineEcommerce.Server.Utilities;
 
 namespace OnlineEcommerce.Server.Pages.Product
 {
     public class AddProductBase : ComponentBase
     {
-        public ComponentProduct product = new ComponentProduct();
+        [Inject]
+        IProductService ProductService { get; set; }
+
+        [Inject]
+        ISnackbar Snackbar { get; set; }
+
+        public List<ComponentProductImages> Images = new List<ComponentProductImages>();
+        public List<ComponentProductVariant> Variants = new List<ComponentProductVariant>();
+
+        public ComponentProductDetail productDetail = new ComponentProductDetail();
         public ComponentProductVariant variant = new ComponentProductVariant();
-        public List<ComponentProductVariant> Variants;
-        public List<ComponentProductImages> ProductImages;
         public ComponentProductImages productImage;
+      
 
         public bool _processing = false;
 
@@ -39,7 +49,7 @@ namespace OnlineEcommerce.Server.Pages.Product
         {
             string chipText = chip.Text;
             ComponentProductVariant variantToRemove = Variants.FirstOrDefault(v => v.Size == chipText || v.Color == chipText);
-            ComponentProductImages imageToRemove = ProductImages.FirstOrDefault(i => i.Url == chipText);
+            ComponentProductImages imageToRemove = Images.FirstOrDefault(i => i.Url == chipText);
 
             if (variantToRemove != null)
             {
@@ -76,14 +86,31 @@ namespace OnlineEcommerce.Server.Pages.Product
         public async Task LoadsComponents()
         {
             Variants = StaticListProductVariant.GetVariants();
-            ProductImages = StaticListProductImage.GetImages();
+            Images = StaticListProductImage.GetImages();
         }
 
         public async Task AddingProductProcessing()
         {
             _processing = true;
             await Task.Delay(2000);
-            _processing = false;
+
+
+            var response = await ProductService.CreateProduct(new DTO_Product
+            {
+                Name = productDetail.Name,
+                Description = productDetail.Description,
+                BasePrice = productDetail.BasePrice,
+                Variants = Variants,
+                Images = Images
+            });
+
+            if (response.IsSuccess)
+            {
+                _processing = false;
+                Snackbar.Clear();
+                Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
+                Snackbar.Add(response.StatusMessage, Severity.Success);
+            }
         }
 
     }

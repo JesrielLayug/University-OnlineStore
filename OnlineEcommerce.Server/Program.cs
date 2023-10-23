@@ -22,7 +22,7 @@ builder.Services.AddScoped<IProductService, ProductService>();
 
 builder.Services.AddScoped<IOrganizationRepository, OrganizationRepository>();
 
-
+builder.Services.AddScoped<IProductImagesRepository, ProductImagesRepository>();
 builder.Services.AddScoped<IProductVariantRepository, ProductVariantRepository>();
 
 

@@ -73,17 +73,17 @@
                                 </ButtonTemplate>
                             </MudFileUpload>
                             <MudContainer Class="py-4 ms-3 d-flex" Style="overflow-x: scroll; max-height: 220px">
-                                @foreach (var image in ProductImages)
+                                @foreach (var image in Images)
                                 {
                                     <MudImage Src="@image.Data" Width="180" Height="160" ObjectFit="ObjectFit.Fill" Alt="@image.Url" Elevation="2" Class="rounded me-4" />
                                 }
                             </MudContainer>
                         </MudItem>
-                        @if(ProductImages.Count != 0)
+                        @if(Images != null)
                         {
                             <MudItem xs="12">
                                 <MudChipSet AllClosable="true" OnClose="RemoveChip">
-                                    @foreach (var image in ProductImages)
+                                    @foreach (var image in Images)
                                     {
                                         <MudChip Color="Color.Info" Text="@image.Url"></MudChip>
                                     }
@@ -129,7 +129,7 @@
                             </MudItem>
                         </MudGrid>
 
-                        @if (Variants.Count > 0)
+                        @if (Variants != null)
                         {
                             <MudText Typo="Typo.subtitle1">Sizes</MudText>
                             <MudChipSet AllClosable="true" OnClose="RemoveChip">

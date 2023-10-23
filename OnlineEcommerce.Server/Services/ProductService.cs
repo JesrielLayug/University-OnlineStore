@@ -12,62 +12,68 @@ namespace OnlineEcommerce.Server.Services
         private readonly IProductRepository _product;
         private readonly IOrganizationRepository _organization;
         private readonly IProductVariantRepository _productVariant;
+        private readonly IProductImagesRepository _productImages;
 
-        public ProductService(IProductRepository product, IOrganizationRepository organization, IProductVariantRepository productVariant)
+        public ProductService(IProductRepository product, IOrganizationRepository organization, 
+                              IProductVariantRepository productVariant, IProductImagesRepository productImages)
         {
             this._product = product;
             this._organization = organization;
             this._productVariant = productVariant;
+            this._productImages = productImages;
         }
 
-        public async Task<Response<int?>> CreateProduct(DTO_Product product)
+        public async Task<Response> CreateProduct(DTO_Product product)
         {
             try
             {
-                var productExist = await _productVariant.GetProductVariantBySKU(product.SKU);
-                if (productExist != null)
-                {
-                    return new Response<int?>
-                    {
-                        IsSuccess = false,
-                        StatusMessage = "The product is already used. Please try another one.",
-                        Data = null
-                    };
-                }
 
-                var organizationId = await _organization.GetById(product.OrganizationName);
-                
                 var domainProduct = new Product
                 {
-                    Name = product.ProductName,
+                    Name = product.Name,
                     Description = product.Description,
                     Price = product.BasePrice,
-                    OrganizationId = organizationId,
+                    OrganizationId = await _organization.GetById(product.OrganizationName)
                 };
 
-                var newProduct = await _product.CreateProduct(domainProduct); // returns the new productId
-                var productSku = SKUGenerator.GenerateSKU(product.ProductName, product.OrganizationName, newProduct);
+                var newProductId = await _product.CreateProduct(domainProduct);
 
-                var domainProductVariant = new ProductVariant
+                foreach(var image in product.Images)
                 {
-                    ProductId = newProduct,
-                    Size = product.Size,
-                    Color = product.Color,
-                    Stock = product.Stock,
-                    PriceModifier = product.PriceModifier,
-                    SKU = productSku,
-                };
+                    await _productImages.CreateProductImages(new ProductImages
+                    {
+                        ProductId = newProductId,
+                        Url = image.Url,
+                        Data = image.Data
+                    });
+                }
 
-                return new Response<int?>
+                foreach(var variant in  product.Variants)
+                {
+                    await _productVariant.AddProductVariant(new ProductVariant
+                    {
+                        ProductId = newProductId,
+                        Size = variant.Size,
+                        Color = variant.Color.ToString(),
+                        Stock = variant.Stock,
+                        PriceModifier = variant.PriceModifier,
+                        SKU = SKUGenerator.GenerateSKU(product.Name, product.OrganizationName, newProductId)
+                    });
+                }
+
+                return new Response
                 {
                     IsSuccess = true,
                     StatusMessage = "The product is successfully created.",
-                    Data = await _productVariant.AddProductVariant(domainProductVariant)
                 };
             }
             catch (Exception)
             {
-                throw;
+                return new Response
+                {
+                    IsSuccess = false,
+                    StatusMessage = "There is something wrong with the server.",
+                };
             }
         }
     }
