@@ -22,10 +22,10 @@ namespace OnlineEcommerce.Server.Pages.Product
         public List<ComponentProductImages> Images = new List<ComponentProductImages>();
         public List<ComponentProductVariant> Variants = new List<ComponentProductVariant>();
 
-        public ComponentProductDetail productDetail = new ComponentProductDetail();
+        public ComponentProductDetail product = new ComponentProductDetail();
         public ComponentProductVariant variant = new ComponentProductVariant();
         public ComponentProductImages productImage;
-      
+
 
         public bool _processing = false;
 
@@ -36,13 +36,16 @@ namespace OnlineEcommerce.Server.Pages.Product
 
         public void AddVariant()
         {
-            StaticListProductVariant.AddVariant(new ComponentProductVariant
+            if(string.IsNullOrWhiteSpace(variant.Size) || string.IsNullOrWhiteSpace(variant.Color.ToString()))
             {
-                Color = variant.Color,
-                Size = variant.Size,
-                PriceModifier = variant.PriceModifier,
-                Stock = variant.Stock,
-            });
+                StaticListProductVariant.AddVariant(new ComponentProductVariant
+                {
+                    Color = variant.Color,
+                    Size = variant.Size,
+                    PriceModifier = variant.PriceModifier,
+                    Stock = variant.Stock,
+                });
+            }
         }
 
         public void RemoveChip(MudChip chip)
@@ -56,7 +59,7 @@ namespace OnlineEcommerce.Server.Pages.Product
                 StaticListProductVariant.RemoveVariant(variantToRemove);
             }
 
-            if(imageToRemove != null)
+            if (imageToRemove != null)
             {
                 StaticListProductImage.RemoveImage(imageToRemove);
             }
@@ -65,14 +68,14 @@ namespace OnlineEcommerce.Server.Pages.Product
         public async Task OnInputImageChanged(InputFileChangeEventArgs e)
         {
             var format = "image/png";
-            var images =  e.GetMultipleFiles(int.MaxValue);
+            var images = e.GetMultipleFiles(int.MaxValue);
 
             foreach (var image in images)
             {
                 var resizedImage = await image.RequestImageFileAsync(format, 200, 200);
                 var buffer = new byte[resizedImage.Size];
                 await resizedImage.OpenReadStream().ReadAsync(buffer);
-                var imageData = $"data:{format};base64,{Convert.ToBase64String(buffer)}" ;
+                var imageData = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
                 productImage = new ComponentProductImages
                 {
                     Url = image.Name,
@@ -93,24 +96,36 @@ namespace OnlineEcommerce.Server.Pages.Product
         {
             _processing = true;
             await Task.Delay(2000);
+            Snackbar.Clear();
+            Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
 
-
-            var response = await ProductService.CreateProduct(new DTO_Product
-            {
-                Name = productDetail.Name,
-                Description = productDetail.Description,
-                BasePrice = productDetail.BasePrice,
-                Variants = Variants,
-                Images = Images
-            });
-
-            if (response.IsSuccess)
+            if (Variants.Count == 0 || Images.Count == 0)
             {
                 _processing = false;
-                Snackbar.Clear();
-                Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
-                Snackbar.Add(response.StatusMessage, Severity.Success);
+                Snackbar.Add("Please complete each field.", Severity.Error);
             }
+            else 
+            {
+                var response = await ProductService.CreateProduct(new DTO_Product
+                {
+                    Name = product.Name,
+                    Description = product.Description,
+                    BasePrice = product.BasePrice,
+                    Variants = Variants,
+                    Images = Images
+                });
+
+                if (response.IsSuccess)
+                {
+                    _processing = false;
+                    Snackbar.Add(response.StatusMessage, Severity.Success);
+                }
+                else
+                {
+                    _processing = false;
+                    Snackbar.Add(response.StatusMessage, Severity.Error);
+                }
+            } 
         }
 
     }
