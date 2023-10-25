@@ -1,8 +1,8 @@
 ﻿using MudBlazor.Utilities;
 
-namespace OnlineEcommerce.Server.Component_Models
+namespace OnlineEcommerce.Server.Models.DTOs
 {
-    public class ComponentProductVariant
+    public class DTO_ProductVariant
     {
         public int Id { get; set; }
         public string Size { get; set; } = string.Empty;

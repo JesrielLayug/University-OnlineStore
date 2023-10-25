@@ -1,4 +1,5 @@
-﻿using OnlineEcommerce.Server.Data.Repositories.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using OnlineEcommerce.Server.Data.Repositories.Contracts;
 using OnlineEcommerce.Server.Models;
 
 namespace OnlineEcommerce.Server.Data.Repositories
@@ -17,6 +18,12 @@ namespace OnlineEcommerce.Server.Data.Repositories
             _db.ProductImages.Add(images);
             await _db.SaveChangesAsync();
             return images.Id;
+        }
+
+        public async Task<IEnumerable<ProductImages>> GetAll()
+        {
+            var images = await _db.ProductImages.ToListAsync();
+            return images;
         }
     }
 }

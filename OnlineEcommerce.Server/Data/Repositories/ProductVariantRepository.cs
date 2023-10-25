@@ -21,6 +21,12 @@ namespace OnlineEcommerce.Server.Data.Repositories
             return productVariant.Id;
         }
 
+        public async Task<IEnumerable<ProductVariant>> GetAll()
+        {
+            var variants = await _db.ProductVariants.ToListAsync();
+            return variants;
+        }
+
         public async Task<int?> GetProductVariantBySKU(string SKU)
         {
             var product = await _db.ProductVariants.FirstOrDefaultAsync(p => p.SKU == SKU);

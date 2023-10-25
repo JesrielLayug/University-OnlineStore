@@ -1,5 +1,6 @@
 ﻿using OnlineEcommerce.Server.Data.Repositories;
 using OnlineEcommerce.Server.Data.Repositories.Contracts;
+using OnlineEcommerce.Server.Extensions;
 using OnlineEcommerce.Server.Models;
 using OnlineEcommerce.Server.Models.DTOs;
 using OnlineEcommerce.Server.Services.Contracts;
@@ -75,6 +76,16 @@ namespace OnlineEcommerce.Server.Services
                     StatusMessage = "There is something wrong with the server.",
                 };
             }
+        }
+
+        public async Task<IEnumerable<DTO_Product>> GetProducts()
+        {
+            var domainProducts = await _product.GetAll();
+            var domainImages = await _productImages.GetAll();
+            var domainVariants = await _productVariant.GetAll();
+
+            var dtoProducts = domainProducts.ConvertToDto(domainVariants, domainImages);
+            return dtoProducts;
         }
     }
 }

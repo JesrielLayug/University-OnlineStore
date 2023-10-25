@@ -1,6 +1,6 @@
-﻿namespace OnlineEcommerce.Server.Component_Models
+﻿namespace OnlineEcommerce.Server.Models.DTOs
 {
-    public class ComponentProductImages
+    public class DTO_ProductImage
     {
         public int Id { get; set; }
         public string Url { get; set; }

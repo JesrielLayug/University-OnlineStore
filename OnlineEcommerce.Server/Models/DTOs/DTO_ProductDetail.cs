@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
-namespace OnlineEcommerce.Server.Component_Models
+namespace OnlineEcommerce.Server.Models.DTOs
 {
-    public class ComponentProductDetail
+    public class DTO_ProductDetail
     {
         public int Id { get; set; }
         [Required]

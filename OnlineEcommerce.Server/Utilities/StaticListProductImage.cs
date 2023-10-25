@@ -1,13 +1,13 @@
 ﻿using MudBlazor;
-using OnlineEcommerce.Server.Component_Models;
+using OnlineEcommerce.Server.Models.DTOs;
 
 namespace OnlineEcommerce.Server.Utilities
 {
     public class EventArgsImage : EventArgs
     {
-        public ComponentProductImages _image { get; }
+        public DTO_ProductImage _image { get; }
 
-        public EventArgsImage(ComponentProductImages image)
+        public EventArgsImage(DTO_ProductImage image)
         {
             _image = image;
         }
@@ -15,33 +15,33 @@ namespace OnlineEcommerce.Server.Utilities
 
     public static class StaticListProductImage
     {
-        private static List<ComponentProductImages> Images = new List<ComponentProductImages>();
+        private static List<DTO_ProductImage> Images = new List<DTO_ProductImage>();
         public static event EventHandler<EventArgsImage> ClickAddImage;
         public static event EventHandler<EventArgsImage> ClickRemoveImage;
 
-        public static void AddImage(ComponentProductImages image)
+        public static void AddImage(DTO_ProductImage image)
         {
             Images.Add(image);
             ImageAdded(image);
         }
 
-        public static void RemoveImage(ComponentProductImages image)
+        public static void RemoveImage(DTO_ProductImage image)
         {
             Images.Remove(image);
             ImageRemove(image);
         }
 
-        public static List<ComponentProductImages> GetImages()
+        public static List<DTO_ProductImage> GetImages()
         {
             return Images;
         }
 
-        public static void ImageAdded(ComponentProductImages image)
+        public static void ImageAdded(DTO_ProductImage image)
         {
             ClickAddImage?.Invoke(null, new EventArgsImage(image));
         }
 
-        public static void ImageRemove(ComponentProductImages image)
+        public static void ImageRemove(DTO_ProductImage image)
         {
             ClickRemoveImage?.Invoke(null, new EventArgsImage(image));
         }

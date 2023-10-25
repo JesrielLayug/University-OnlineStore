@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
 using MudBlazor.Utilities;
-using OnlineEcommerce.Server.Component_Models;
 using OnlineEcommerce.Server.Models;
 using OnlineEcommerce.Server.Models.DTOs;
 using OnlineEcommerce.Server.Services.Contracts;
@@ -19,12 +18,12 @@ namespace OnlineEcommerce.Server.Pages.Product
         [Inject]
         ISnackbar Snackbar { get; set; }
 
-        public List<ComponentProductImages> Images = new List<ComponentProductImages>();
-        public List<ComponentProductVariant> Variants = new List<ComponentProductVariant>();
+        public List<DTO_ProductImage> Images = new List<DTO_ProductImage>();
+        public List<DTO_ProductVariant> Variants = new List<DTO_ProductVariant>();
 
-        public ComponentProductDetail product = new ComponentProductDetail();
-        public ComponentProductVariant variant = new ComponentProductVariant();
-        public ComponentProductImages productImage;
+        public DTO_ProductDetail product = new DTO_ProductDetail();
+        public DTO_ProductVariant variant = new DTO_ProductVariant();
+        public DTO_ProductImage productImage;
 
 
         public bool _processing = false;
@@ -38,7 +37,7 @@ namespace OnlineEcommerce.Server.Pages.Product
         {
             if(string.IsNullOrWhiteSpace(variant.Size) || string.IsNullOrWhiteSpace(variant.Color.ToString()))
             {
-                StaticListProductVariant.AddVariant(new ComponentProductVariant
+                StaticListProductVariant.AddVariant(new DTO_ProductVariant
                 {
                     Color = variant.Color,
                     Size = variant.Size,
@@ -51,8 +50,8 @@ namespace OnlineEcommerce.Server.Pages.Product
         public void RemoveChip(MudChip chip)
         {
             string chipText = chip.Text;
-            ComponentProductVariant variantToRemove = Variants.FirstOrDefault(v => v.Size == chipText || v.Color == chipText);
-            ComponentProductImages imageToRemove = Images.FirstOrDefault(i => i.Url == chipText);
+            DTO_ProductVariant variantToRemove = Variants.FirstOrDefault(v => v.Size == chipText || v.Color == chipText);
+            DTO_ProductImage imageToRemove = Images.FirstOrDefault(i => i.Url == chipText);
 
             if (variantToRemove != null)
             {
@@ -76,7 +75,7 @@ namespace OnlineEcommerce.Server.Pages.Product
                 var buffer = new byte[resizedImage.Size];
                 await resizedImage.OpenReadStream().ReadAsync(buffer);
                 var imageData = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
-                productImage = new ComponentProductImages
+                productImage = new DTO_ProductImage
                 {
                     Url = image.Name,
                     Data = imageData
