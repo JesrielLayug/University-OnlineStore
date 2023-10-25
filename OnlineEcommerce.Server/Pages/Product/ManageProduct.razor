@@ -1,6 +1,27 @@
 ﻿@page "/product"
+@using OnlineEcommerce.Server.Models.DTOs;
 @inherits ManageProductBase
 
-<h3>Product</h3>
+<MudTable Hover="true" Bordered="true" Striped="true" 
+          Filter="new Func<DTO_Product, bool>(FilterProduct1)">
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">ALL PRODUCTS</MudText>
+        <MudSpacer />
+        <MudTextField @bind-Value="searchString1" Placeholder="Search" Variant="Variant.Outlined"
+                      Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" 
+                      IconSize="Size.Medium" Class="mt-0"></MudTextField>
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh>#</MudTh>
+        <MudTh>Images</MudTh>
+        <MudTh>Name</MudTh>
+        <MudTh>Description</MudTh>
+        <MudTh>BasePrice</MudTh>
+        <MudTh>Sizes</MudTh>
+        <MudTh>Color</MudTh>
+        <MudTh>SKU</MudTh>
+        <MudTh>Action</MudTh>
+    </HeaderContent>
+</MudTable>
 
 
