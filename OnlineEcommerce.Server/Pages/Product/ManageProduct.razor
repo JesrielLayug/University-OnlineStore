@@ -2,26 +2,61 @@
 @using OnlineEcommerce.Server.Models.DTOs;
 @inherits ManageProductBase
 
-<MudTable Hover="true" Bordered="true" Striped="true" 
-          Filter="new Func<DTO_Product, bool>(FilterProduct1)">
-    <ToolBarContent>
-        <MudText Typo="Typo.h6">ALL PRODUCTS</MudText>
-        <MudSpacer />
-        <MudTextField @bind-Value="searchString1" Placeholder="Search" Variant="Variant.Outlined"
-                      Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" 
-                      IconSize="Size.Medium" Class="mt-0"></MudTextField>
-    </ToolBarContent>
-    <HeaderContent>
-        <MudTh>#</MudTh>
-        <MudTh>Images</MudTh>
-        <MudTh>Name</MudTh>
-        <MudTh>Description</MudTh>
-        <MudTh>BasePrice</MudTh>
-        <MudTh>Sizes</MudTh>
-        <MudTh>Color</MudTh>
-        <MudTh>SKU</MudTh>
-        <MudTh>Action</MudTh>
-    </HeaderContent>
-</MudTable>
+<MudPaper Outlined="true" Class="pa-5">
+    <MudTable Items="@Products" Hover="true" Bordered="true" Breakpoint="Breakpoint.Sm" CustomHeader="true"
+              Filter="new Func<DTO_Product, bool>(FilterProduct1)" Elevation="0" HeaderClass="table-head-bordered">
+        <HeaderContent>
+            <MudTHeadRow Class="header-centered">
+                <MudTh colspan="12">
+                    <MudGrid>
+                        <MudItem md="7">
+                            <MudText Typo="Typo.h6" Class="mt-3">ALL PRODUCTS</MudText> 
+                        </MudItem>
+                        <MudItem md="5">
+                            <MudSpacer />
+                            <MudTextField @bind-Value="searchString1" Placeholder="Search" Variant="Variant.Outlined"
+                                          Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search"
+                                          IconSize="Size.Medium" Class="mt-0"></MudTextField>
+                        </MudItem>
+                    </MudGrid>
+       
+                </MudTh>
+            </MudTHeadRow>
+            <MudTHeadRow>
+                <MudTh>#</MudTh>
+                <MudTh>Name</MudTh>
+                <MudTh>Description</MudTh>
+                <MudTh>BasePrice</MudTh>
+                <MudTh>Sizes</MudTh>
+                <MudTh>Colors</MudTh>
+                <MudTh>SKU</MudTh>
+                <MudTh>Action</MudTh>
+            </MudTHeadRow>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="#">@context.Id</MudTd>
+            <MudTd DataLabel="Name">@context.Name</MudTd>
+            <MudTd DataLabel="Description">@context.Description</MudTd>
+            <MudTd DataLabel="BasePrice">@context.BasePrice</MudTd>
+            <MudTd DataLabel="Sizes">
+                <MudChipSet>
+                    @foreach (var variant in context.Variants)
+                    {
+                        <MudChip Color="Color.Info" Text="@variant.Size"></MudChip>
+                    }
+                </MudChipSet>
+            </MudTd>
+            <MudTd DataLabel="Colors">
+                <MudContainer Class="pa-0 ma-0 d-flex">
+                        <div style="width: 20px; height: 20px; background-color: black; margin-right: 7px; box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.5);"></div>
+                </MudContainer>
+            </MudTd>
+            <MudTd DataLabel="SKU">
+            </MudTd>
+            <MudTd DataLabel="Action">Action</MudTd>
+        </RowTemplate>
+    </MudTable>
+</MudPaper>
+
 
 

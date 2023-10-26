@@ -16,6 +16,7 @@ namespace OnlineEcommerce.Server.Extensions
                 Id = product.Id,
                 Name = product.Name,
                 BasePrice = product.Price,
+                Description = product.Description,
                 Images = images
                     .Where(image => image.ProductId == product.Id)
                     .Select(image => new DTO_ProductImage

@@ -50,6 +50,11 @@ th[b-83tq9r5j4p], td[b-83tq9r5j4p] {
 .custum-file-upload input[b-83tq9r5j4p] {
   display: none;
 }
+/* _content/OnlineEcommerce.Server/Pages/Product/ManageProduct.razor.rz.scp.css */
+.mud-table-head .header-centered th[b-clcai6gvi0] {
+    text-align: center;
+    font-size: 1.2em;
+}
 /* _content/OnlineEcommerce.Server/Shared/Components/Loading.razor.rz.scp.css */
 .svgbox[b-kjmtzb858a] {
     position: absolute;

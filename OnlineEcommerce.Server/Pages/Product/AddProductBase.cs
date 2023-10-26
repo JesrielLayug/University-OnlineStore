@@ -35,7 +35,7 @@ namespace OnlineEcommerce.Server.Pages.Product
 
         public void AddVariant()
         {
-            if(string.IsNullOrWhiteSpace(variant.Size) || string.IsNullOrWhiteSpace(variant.Color.ToString()))
+            if(!string.IsNullOrWhiteSpace(variant.Size) || !string.IsNullOrWhiteSpace(variant.Color.ToString()))
             {
                 StaticListProductVariant.AddVariant(new DTO_ProductVariant
                 {
