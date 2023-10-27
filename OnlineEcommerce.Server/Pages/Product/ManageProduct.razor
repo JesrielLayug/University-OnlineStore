@@ -49,7 +49,13 @@
                     <MudImage Src="@productImage.Data" Width="80" Height="80" ObjectFit="ObjectFit.Cover" Alt="@productImage.Url" Elevation="2" Class="rounded me-4" />
                 </MudTd>
                 <MudTd DataLabel="Name">@context.Name</MudTd>
-                <MudTd DataLabel="Description">@context.Description</MudTd>
+                <MudTd DataLabel="Description">
+                    @{
+                        StringFunction Description = new StringFunction();
+                    }
+
+                    @Description.LimitText(context.Description, 25)
+                </MudTd>
                 <MudTd DataLabel="Base Price">@context.BasePrice</MudTd>
                 <MudTd DataLabel="Sizes">
                     <MudChipSet>
