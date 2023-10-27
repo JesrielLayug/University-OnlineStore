@@ -1,4 +1,15 @@
-﻿.mud-table-head .header-centered th {
+﻿.heading {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.no-items-heading {
+    font-family: Roboto;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.mud-table-head .header-centered th {
     text-align: center;
     font-size: 1.2em;
 }

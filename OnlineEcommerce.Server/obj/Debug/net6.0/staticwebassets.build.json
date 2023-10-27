@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+MFLu6KEs1mTbL5bQkTrRiKrD7cXgtyDJY8Zai/Xkfg=",
+  "Hash": "z1PWxnYehGElifknW1IWIHTs8G2pbJGUIdaQUggg3ew=",
   "Source": "OnlineEcommerce.Server",
   "BasePath": "_content/OnlineEcommerce.Server",
   "Mode": "Default",
@@ -117,6 +117,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\MainStore\\lace-4.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\wwwroot\\Images\\MainStore\\no-item.png",
+      "SourceId": "OnlineEcommerce.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\wwwroot\\",
+      "BasePath": "_content/OnlineEcommerce.Server",
+      "RelativePath": "Images/MainStore/no-item.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\MainStore\\no-item.png"
     },
     {
       "Identity": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\wwwroot\\Images\\MainStore\\patch-1.jpg",
@@ -236,6 +253,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\MainStore\\uniform-3.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\wwwroot\\Images\\Resources\\no-item.png",
+      "SourceId": "OnlineEcommerce.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\wwwroot\\",
+      "BasePath": "_content/OnlineEcommerce.Server",
+      "RelativePath": "Images/Resources/no-item.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Resources\\no-item.png"
     }
   ]
 }

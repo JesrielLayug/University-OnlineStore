@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\Images\\MainStore\\lace-4.jpg"
     },
     {
+      "Id": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\wwwroot\\Images\\MainStore\\no-item.png",
+      "PackagePath": "staticwebassets\\Images\\MainStore\\no-item.png"
+    },
+    {
       "Id": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\wwwroot\\Images\\MainStore\\patch-1.jpg",
       "PackagePath": "staticwebassets\\Images\\MainStore\\patch-1.jpg"
     },
@@ -39,6 +43,10 @@
     {
       "Id": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\wwwroot\\Images\\MainStore\\uniform-3.jpg",
       "PackagePath": "staticwebassets\\Images\\MainStore\\uniform-3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\wwwroot\\Images\\Resources\\no-item.png",
+      "PackagePath": "staticwebassets\\Images\\Resources\\no-item.png"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.OnlineEcommerce.Server.Microsoft.AspNetCore.StaticWebAssets.props",

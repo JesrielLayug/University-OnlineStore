@@ -5,7 +5,7 @@
 @inject ISnackbar Snackbar
 
 
-<h3 class="create-heading">Add Product</h3>
+<h3 class="heading">Add Product</h3>
 <MudText Typo="Typo.body1" Class="my-4" Style="font-size: 14px; color: #8f8f8fff;">
     The most important feature in the product editing section is the product adding part.
     When adding products here, do not ignore to fill in all the required fields completely and follow the 
@@ -139,17 +139,30 @@
                         {
                             <MudText Typo="Typo.subtitle1">Sizes</MudText>
                             <MudChipSet AllClosable="true" OnClose="RemoveChip">
-                                @foreach (var size in Variants)
+                                @{
+                                    var Sizes = Variants
+                                    .Select(variant => variant.Size)
+                                    .Distinct()
+                                    .ToList();
+                                }
+
+                                @foreach (var size in Sizes)
                                 {
-                                    <MudChip Color="Color.Info" Text="@size.Size"></MudChip>
+                                    <MudChip Color="Color.Info" Text="@size"></MudChip>
                                 }
                             </MudChipSet>
 
                             <MudText Typo="Typo.subtitle1" Class="mt-3">Colors</MudText>
                             <MudChipSet AllClosable="true" OnClose="RemoveChip">
-                                @foreach (var color in Variants)
+                                @{
+                                    var ProductColor = Variants
+                                        .Select(variant => variant.Color)
+                                        .Distinct()
+                                        .ToList();
+                                }
+                                @foreach (var color in ProductColor)
                                 {
-                                    <MudChip Color="Color.Info" Text="@color.Color.ToString()"></MudChip>
+                                    <MudChip Color="Color.Info" Text="@color.ToString()"></MudChip>
                                 }
                             </MudChipSet>
 
@@ -164,6 +177,7 @@
 
                                 </thead>
                                 <tbody>
+
                                     @foreach (var v in Variants)
                                     {
                                         <tr>

@@ -9,16 +9,22 @@ namespace OnlineEcommerce.Server.Pages.Product
         [Inject]
         IProductService ProductService { get; set; }
 
+        [Inject]
+        NavigationManager NavigationManager { get; set; }
+
         public string searchString1 = "";
 
-        public DTO_Product selectedProduct = null;
         public HashSet<DTO_Product> selectedProducts = new HashSet<DTO_Product>();
-        public IEnumerable<DTO_Product> Products = new List<DTO_Product>();
+        public IEnumerable<DTO_Product> Products;
+
+        public DTO_Product product = new DTO_Product();
 
         protected override async Task OnInitializedAsync()
         {
             Products = await ProductService.GetProducts();
         }
+
+        public void NavigateToAddProductPage() => NavigationManager.NavigateTo("/create-product");
 
         public bool FilterProduct1(DTO_Product product) => FilterProduct(product, searchString1);
 

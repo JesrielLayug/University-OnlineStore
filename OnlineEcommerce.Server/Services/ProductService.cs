@@ -85,6 +85,7 @@ namespace OnlineEcommerce.Server.Services
             var domainVariants = await _productVariant.GetAll();
 
             var dtoProducts = domainProducts.ConvertToDto(domainVariants, domainImages);
+
             return dtoProducts;
         }
     }
