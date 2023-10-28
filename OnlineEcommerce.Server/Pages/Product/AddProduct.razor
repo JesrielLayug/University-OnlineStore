@@ -137,20 +137,26 @@
 
                         @if (Variants.Count != 0)
                         {
-                            <MudText Typo="Typo.subtitle1">Sizes</MudText>
-                            <MudChipSet AllClosable="true" OnClose="RemoveChip">
-                                @{
-                                    var Sizes = Variants
-                                    .Select(variant => variant.Size)
-                                    .Distinct()
-                                    .ToList();
-                                }
+                            
+                            var Sizes = Variants
+                            .Select(variant => variant.Size)
+                            .Distinct()
+                            .ToList();
 
-                                @foreach (var size in Sizes)
-                                {
-                                    <MudChip Color="Color.Info" Text="@size"></MudChip>
-                                }
-                            </MudChipSet>
+                            @if (Variants.Any(variant => !string.IsNullOrEmpty(variant.Size)))
+                            {
+                                <MudText Typo="Typo.subtitle1">Sizes</MudText>
+                                <MudChipSet AllClosable="true" OnClose="RemoveChip">
+
+                                    @foreach (var size in Sizes)
+                                    {
+                                        @if (!string.IsNullOrEmpty(size))
+                                        {
+                                            <MudChip Color="Color.Info" Text="@size"></MudChip>
+                                        }
+                                    }
+                                </MudChipSet>
+                            }
 
                             <MudText Typo="Typo.subtitle1" Class="mt-3">Colors</MudText>
                             <MudChipSet AllClosable="true" OnClose="RemoveChip">

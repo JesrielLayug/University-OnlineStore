@@ -2,118 +2,129 @@
 @using OnlineEcommerce.Server.Models.DTOs;
 @inherits ManageProductBase
 
-@if(Products == null || Products.Count() == 0)
+
+
+@if (isLoading)
 {
-    <MudContainer Class="d-flex flex-column align-center pa-0 ma-0">
-        <MudImage Src="/Images/Resources/no-item.png" Width="450" Height="450" ObjectFit="ObjectFit.Cover" Elevation="0" Class="rounded" />
-        <MudText Typo="Typo.h4" Align="Align.Center"><strong>NO PRODUCTS</strong></MudText>
-        <span class="no-items-text">You don't have any products yet. Tap the button below to add.</span>
-        <MudFab Color="Color.Info" Label="Add Product" @onclick="NavigateToAddProductPage" Class="mt-6" StartIcon="@Icons.Material.Filled.Add" Size="Size.Medium" />
-    </MudContainer>
-    
+    <Loading />
 }
 else
 {
-    <h3 class="heading">Manage Product</h3>
-    <MudText Typo="Typo.body1" Class="mt-2 mb-8" Style="font-size: 14px; color: #8f8f8fff;">
-        The most important feature in the manage product section is editing a product.
-        If you want to edit or view all the details of a certain product, you can just easily select it below.
-    </MudText>
-    <MudPaper Outlined="true" Class="pa-5">
-        <MudTable Items="@Products" Hover="true" Breakpoint="Breakpoint.Sm" CustomHeader="true"
-                  Filter="new Func<DTO_Product, bool>(FilterProduct1)" Elevation="0" HeaderClass="table-head-bordered">
-            <HeaderContent>
-                <MudTHeadRow Class="header-centered">
-                    <MudTh colspan="12">
-                        <MudGrid>
-                            <MudItem md="7">
-                                <MudText Typo="Typo.h6" Class="mt-3">ALL PRODUCTS</MudText>
-                            </MudItem>
-                            <MudItem md="5">
-                                <MudSpacer />
-                                <MudTextField @bind-Value="searchString1" Placeholder="Search" Variant="Variant.Outlined"
-                                              Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search"
-                                              IconSize="Size.Medium" Class="mt-0"></MudTextField>
-                            </MudItem>
-                        </MudGrid>
+    @if (Products == null || Products.Count() == 0)
+    {
+        <MudContainer Class="d-flex flex-column align-center pa-0 ma-0">
+            <MudImage Src="/Images/Resources/no-item.png" Width="450" Height="450" ObjectFit="ObjectFit.Cover" Elevation="0" Class="rounded" />
+            <MudText Typo="Typo.h4" Align="Align.Center"><strong>NO PRODUCTS</strong></MudText>
+            <span class="no-items-text">You don't have any products yet. Tap the button below to add.</span>
+            <MudFab Color="Color.Info" Label="Add Product" @onclick="NavigateToAddProductPage" Class="mt-6" StartIcon="@Icons.Material.Filled.Add" Size="Size.Medium" />
+        </MudContainer>
 
-                    </MudTh>
-                </MudTHeadRow>
-                <MudTHeadRow>
-                    <MudTh>#</MudTh>
-                    <MudTh>Image</MudTh>
-                    <MudTh>Name</MudTh>
-                    <MudTh>Description</MudTh>
-                    <MudTh>Base Price</MudTh>
-                    <MudTh>Sizes</MudTh>
-                    <MudTh>Colors</MudTh>
-                    <MudTh>SKU</MudTh>
-                </MudTHeadRow>
-            </HeaderContent>
-            <RowTemplate>
-                <MudTd DataLabel="#">@context.Id</MudTd>
-                <MudTd DataLabel="Image" Class="px-0">
-                    @{
-                        var productImage = context.Images
-                        .FirstOrDefault();
-                    }
-                    <MudImage Src="@productImage.Data" Width="80" Height="80" ObjectFit="ObjectFit.Cover" Alt="@productImage.Url" Elevation="0" Class="rounded me-4" />
-                </MudTd>
-                <MudTd DataLabel="Name">@context.Name</MudTd>
-                <MudTd DataLabel="Description">
-                    @{
-                        StringFunction Description = new StringFunction();
-                    }
+    }
+    else
+    {
+        <h3 class="heading">Manage Product</h3>
+        <MudText Typo="Typo.body1" Class="mt-2 mb-8" Style="font-size: 14px; color: #8f8f8fff;">
+            The most important feature in the manage product section is editing a product.
+            If you want to edit or view all the details of a certain product, you can just easily select it below.
+        </MudText>
+        <MudPaper Outlined="true" Class="pa-5">
+            <MudTable Items="@Products" Hover="true" Breakpoint="Breakpoint.Sm" CustomHeader="true"
+                      Filter="new Func<DTO_Product, bool>(FilterProduct1)" Elevation="0" HeaderClass="table-head-bordered">
+                <HeaderContent>
+                    <MudTHeadRow Class="header-centered">
+                        <MudTh colspan="12">
+                            <MudGrid>
+                                <MudItem md="7">
+                                    <MudText Typo="Typo.h6" Class="mt-3">ALL PRODUCTS</MudText>
+                                </MudItem>
+                                <MudItem md="5">
+                                    <MudSpacer />
+                                    <MudTextField @bind-Value="searchString1" Placeholder="Search" Variant="Variant.Outlined"
+                                                  Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search"
+                                                  IconSize="Size.Medium" Class="mt-0"></MudTextField>
+                                </MudItem>
+                            </MudGrid>
 
-                    @Description.LimitText(context.Description, 25)
-                </MudTd>
-                <MudTd DataLabel="Base Price">@context.BasePrice</MudTd>
-                <MudTd DataLabel="Sizes">
-                    @if (context.Variants[0].Size.Count() != 0)
-                    {
-                        <MudChipSet>
-                            @{
-                                var Size = context.Variants
+                        </MudTh>
+                    </MudTHeadRow>
+                    <MudTHeadRow>
+                        <MudTh>#</MudTh>
+                        <MudTh>Image</MudTh>
+                        <MudTh>Name</MudTh>
+                        <MudTh>Description</MudTh>
+                        <MudTh>Base Price</MudTh>
+                        <MudTh>Sizes</MudTh>
+                        <MudTh>Colors</MudTh>
+                        <MudTh>SKU</MudTh>
+                    </MudTHeadRow>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd DataLabel="#">@context.Id</MudTd>
+                    <MudTd DataLabel="Image" Class="px-0">
+                        @{
+                            var productImage = context.Images
+                            .FirstOrDefault();
+                        }
+                        <MudImage Src="@productImage.Data" Width="80" Height="80" ObjectFit="ObjectFit.Cover" Alt="@productImage.Url" Elevation="0" Class="rounded me-4" />
+                    </MudTd>
+                    <MudTd DataLabel="Name">@context.Name</MudTd>
+                    <MudTd DataLabel="Description">
+                        @{
+                            StringFunction Description = new StringFunction();
+                        }
+
+                        @Description.LimitText(context.Description, 25)
+                    </MudTd>
+                    <MudTd DataLabel="Base Price">@context.BasePrice</MudTd>
+                    <MudTd DataLabel="Sizes">
+                        @if (context.Variants[0].Size.Count() != 0)
+                        {
+                            <MudChipSet>
+                                @{
+                                    var Size = context.Variants
                             .Select(variant => variant.Size)
                             .Distinct()
                             .ToList();
+                                }
+
+                                @foreach (var size in Size)
+                                {
+                                    <MudChip Color="Color.Info" Text="@size"></MudChip>
+                                }
+                            </MudChipSet>
+                        }
+                    </MudTd>
+                    <MudTd DataLabel="Colors">
+                        <MudContainer Class="pa-0 ma-0 d-flex">
+                            @{
+                                var ProductColors = context.Variants
+                                .Select(variant => variant.Color.Value)
+                                .Distinct()
+                                .ToList();
                             }
 
-                            @foreach (var size in Size)
+                            @foreach (var color in ProductColors)
                             {
-                                <MudChip Color="Color.Info" Text="@size"></MudChip>
+                                <div style="width: 20px; height: 20px; background-color: @color; margin-right: 7px; box-shadow: 0px 1px 7px 0px rgba(1,1,1,0.5); border-radius: 50%"></div>
                             }
-                        </MudChipSet>
-                    }
-                </MudTd>
-                <MudTd DataLabel="Colors">
-                    <MudContainer Class="pa-0 ma-0 d-flex">
-                        @{
-                            var ProductColors = context.Variants
-                            .Select(variant => variant.Color.Value)
-                            .Distinct()
-                            .ToList();
-                        }
 
-                        @foreach (var color in ProductColors)
+                        </MudContainer>
+                    </MudTd>
+                    <MudTd DataLabel="SKU">
+                        @foreach (var variant in context.Variants)
                         {
-                            <div style="width: 20px; height: 20px; background-color: @color; margin-right: 7px; box-shadow: 0px 1px 7px 0px rgba(1,1,1,0.5); border-radius: 50%"></div>
+                            product.SKU = variant.SKU;
                         }
+                        @product.SKU
+                    </MudTd>
+                </RowTemplate>
+            </MudTable>
+        </MudPaper>
 
-                    </MudContainer>
-                </MudTd>
-                <MudTd DataLabel="SKU">
-                    @foreach (var variant in context.Variants)
-                    {
-                        product.SKU = variant.SKU;
-                    }
-                    @product.SKU
-                </MudTd>
-            </RowTemplate>
-        </MudTable>
-    </MudPaper>
-
+    }
 }
+
+
 
     
 

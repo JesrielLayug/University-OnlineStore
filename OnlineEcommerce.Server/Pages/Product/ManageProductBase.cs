@@ -14,6 +14,7 @@ namespace OnlineEcommerce.Server.Pages.Product
         NavigationManager NavigationManager { get; set; }
 
         public string searchString1 = "";
+        public bool isLoading = true;
 
         public HashSet<DTO_Product> selectedProducts = new HashSet<DTO_Product>();
         public IEnumerable<DTO_Product> Products;
@@ -25,6 +26,7 @@ namespace OnlineEcommerce.Server.Pages.Product
             if(firstRender)
             {
                 Products = await ProductService.GetProducts();
+                isLoading = false;
                 StateHasChanged();
             }
         }
