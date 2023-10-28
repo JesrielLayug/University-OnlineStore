@@ -18,6 +18,9 @@ namespace OnlineEcommerce.Server.Pages.Product
         [Inject]
         ISnackbar Snackbar { get; set; }
 
+        [Inject]
+        NavigationManager NavigationManager { get; set; }
+
         public List<DTO_ProductImage> Images = new List<DTO_ProductImage>();
         public List<DTO_ProductVariant> Variants = new List<DTO_ProductVariant>();
 
@@ -117,7 +120,10 @@ namespace OnlineEcommerce.Server.Pages.Product
                 if (response.IsSuccess)
                 {
                     _processing = false;
+                    StaticListProductImage.RemoveAll(Images);
+                    StaticListProductVariant.RemoveAll(Variants);
                     Snackbar.Add(response.StatusMessage, Severity.Success);
+                    StateHasChanged();
                 }
                 else
                 {

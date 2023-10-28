@@ -31,6 +31,11 @@ namespace OnlineEcommerce.Server.Utilities
             ImageRemove(image);
         }
 
+        public static void RemoveAll(List<DTO_ProductImage> images)
+        {
+            images.Clear();
+        }
+
         public static List<DTO_ProductImage> GetImages()
         {
             return Images;

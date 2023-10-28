@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "z1PWxnYehGElifknW1IWIHTs8G2pbJGUIdaQUggg3ew=",
+  "Hash": "XG+asDkPohB9p4es195BAPGWxc6fynTbi2W1Vefs834=",
   "Source": "OnlineEcommerce.Server",
   "BasePath": "_content/OnlineEcommerce.Server",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\MainStore\\bias-1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\wwwroot\\Images\\MainStore\\dhvsu_logo_new.png",
+      "SourceId": "OnlineEcommerce.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\wwwroot\\",
+      "BasePath": "_content/OnlineEcommerce.Server",
+      "RelativePath": "Images/MainStore/dhvsu_logo_new.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\MainStore\\dhvsu_logo_new.png"
     },
     {
       "Identity": "C:\\Users\\LAYUG\\Desktop\\UniversityStore\\OnlineEcommerce.Server\\wwwroot\\Images\\MainStore\\lace-4.jpg",

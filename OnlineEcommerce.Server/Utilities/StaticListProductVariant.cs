@@ -30,6 +30,11 @@ namespace OnlineEcommerce.Server.Utilities
             VariantRemove(variant);
         }
 
+        public static void RemoveAll(List<DTO_ProductVariant> variants)
+        {
+            variants.Clear();
+        }
+
         public static List<DTO_ProductVariant> GetVariants()
         {
             return Variants;

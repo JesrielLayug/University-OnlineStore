@@ -56,10 +56,11 @@ th[b-83tq9r5j4p], td[b-83tq9r5j4p] {
     font-weight: 600;
 }
 
-.no-items-heading[b-clcai6gvi0] {
+.no-items-text[b-clcai6gvi0] {
     font-family: Roboto;
-    font-size: 25px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 400;
+    color: #8f8f8fff;
 }
 
 .mud-table-head .header-centered th[b-clcai6gvi0] {

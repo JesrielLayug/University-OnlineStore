@@ -20,9 +20,13 @@ namespace OnlineEcommerce.Server.Pages.Product
 
         public DTO_Product product = new DTO_Product();
 
-        protected override async Task OnInitializedAsync()
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            Products = await ProductService.GetProducts();
+            if(firstRender)
+            {
+                Products = await ProductService.GetProducts();
+                StateHasChanged();
+            }
         }
 
         public void NavigateToAddProductPage() => NavigationManager.NavigateTo("/create-product");

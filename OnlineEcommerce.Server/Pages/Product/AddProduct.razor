@@ -120,7 +120,7 @@
                                               Variant="Variant.Outlined"></MudTextField>
                             </MudItem>
                             <MudItem xs="12" md="3">
-                                <MudColorPicker @bind-Value="variant.Color" Label="Color" Variant="Variant.Outlined" ColorPickerView="ColorPickerView.Grid" />
+                                <MudColorPicker @bind-Value="variant.Color" Label="Color" DisableToolbar="false" Variant="Variant.Outlined" />
                             </MudItem>
                             <MudItem xs="12" md="2">
                                 <MudTextField @bind-Value="@variant.PriceModifier" Label="Price"

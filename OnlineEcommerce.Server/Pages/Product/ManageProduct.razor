@@ -2,12 +2,23 @@
 @using OnlineEcommerce.Server.Models.DTOs;
 @inherits ManageProductBase
 
-<h3 class="heading">Manage Product</h3>
-<MudText Typo="Typo.body1" Class="mt-2 mb-8" Style="font-size: 14px; color: #8f8f8fff;">
-    The most important feature in the manage product section is editing a product.
-    If you want to edit or view all the details of a certain product, you can just easily select it below.
-</MudText>
-
+@if(Products == null || Products.Count() == 0)
+{
+    <MudContainer Class="d-flex flex-column align-center pa-0 ma-0">
+        <MudImage Src="/Images/Resources/no-item.png" Width="450" Height="450" ObjectFit="ObjectFit.Cover" Elevation="0" Class="rounded" />
+        <MudText Typo="Typo.h4" Align="Align.Center"><strong>NO PRODUCTS</strong></MudText>
+        <span class="no-items-text">You don't have any products yet. Tap the button below to add.</span>
+        <MudFab Color="Color.Info" Label="Add Product" @onclick="NavigateToAddProductPage" Class="mt-6" StartIcon="@Icons.Material.Filled.Add" Size="Size.Medium" />
+    </MudContainer>
+    
+}
+else
+{
+    <h3 class="heading">Manage Product</h3>
+    <MudText Typo="Typo.body1" Class="mt-2 mb-8" Style="font-size: 14px; color: #8f8f8fff;">
+        The most important feature in the manage product section is editing a product.
+        If you want to edit or view all the details of a certain product, you can just easily select it below.
+    </MudText>
     <MudPaper Outlined="true" Class="pa-5">
         <MudTable Items="@Products" Hover="true" Breakpoint="Breakpoint.Sm" CustomHeader="true"
                   Filter="new Func<DTO_Product, bool>(FilterProduct1)" Elevation="0" HeaderClass="table-head-bordered">
@@ -46,7 +57,7 @@
                         var productImage = context.Images
                         .FirstOrDefault();
                     }
-                    <MudImage Src="@productImage.Data" Width="80" Height="80" ObjectFit="ObjectFit.Cover" Alt="@productImage.Url" Elevation="2" Class="rounded me-4" />
+                    <MudImage Src="@productImage.Data" Width="80" Height="80" ObjectFit="ObjectFit.Cover" Alt="@productImage.Url" Elevation="0" Class="rounded me-4" />
                 </MudTd>
                 <MudTd DataLabel="Name">@context.Name</MudTd>
                 <MudTd DataLabel="Description">
@@ -58,19 +69,22 @@
                 </MudTd>
                 <MudTd DataLabel="Base Price">@context.BasePrice</MudTd>
                 <MudTd DataLabel="Sizes">
-                    <MudChipSet>
-                        @{
-                            var Size = context.Variants
+                    @if (context.Variants[0].Size.Count() != 0)
+                    {
+                        <MudChipSet>
+                            @{
+                                var Size = context.Variants
                             .Select(variant => variant.Size)
                             .Distinct()
                             .ToList();
-                        }
+                            }
 
-                        @foreach (var size in Size)
-                        {
-                            <MudChip Color="Color.Info" Text="@size"></MudChip>
-                        }
-                    </MudChipSet>
+                            @foreach (var size in Size)
+                            {
+                                <MudChip Color="Color.Info" Text="@size"></MudChip>
+                            }
+                        </MudChipSet>
+                    }
                 </MudTd>
                 <MudTd DataLabel="Colors">
                     <MudContainer Class="pa-0 ma-0 d-flex">
@@ -99,6 +113,9 @@
         </MudTable>
     </MudPaper>
 
+}
+
+    
 
 
 
