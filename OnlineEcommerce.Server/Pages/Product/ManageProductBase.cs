@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
+using MudBlazor;
 using OnlineEcommerce.Server.Models.DTOs;
+using OnlineEcommerce.Server.Pages.Product.Components;
 using OnlineEcommerce.Server.Services.Contracts;
 using OnlineEcommerce.Server.Utilities;
 
@@ -13,8 +15,13 @@ namespace OnlineEcommerce.Server.Pages.Product
         [Inject]
         NavigationManager NavigationManager { get; set; }
 
+        [Inject]
+        IDialogService DialogService { get; set; }
+
         public string searchString1 = "";
         public bool isLoading = true;
+        public StringFunction Text = new StringFunction();
+
 
         public HashSet<DTO_Product> selectedProducts = new HashSet<DTO_Product>();
         public IEnumerable<DTO_Product> Products;
@@ -37,7 +44,7 @@ namespace OnlineEcommerce.Server.Pages.Product
 
         public bool FilterProduct(DTO_Product product, string searchString)
         {
-            var stock = product.Variants.FirstOrDefault(s => s.Stock.ToString() == searchString);
+            var id = product.Variants.FirstOrDefault(s => s.Id.ToString() == searchString);
             var sku = product.Variants.FirstOrDefault(s => s.SKU.ToString() == searchString);
             var size = product.Variants.FirstOrDefault(s => s.Size.ToString() == searchString);
             var color = product.Variants.FirstOrDefault(s => s.Color.ToString() == searchString);
@@ -46,10 +53,28 @@ namespace OnlineEcommerce.Server.Pages.Product
                 return true;
             if (product.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
                 return true;
-            if ($"{stock} {sku} {size} {color}".Contains(searchString))
+            if ($"{id} {sku} {size} {color}".Contains(searchString))
                 return true;
 
             return false;
+        }
+
+        public async Task ShowDeleteDialog(DTO_Product product)
+        {
+            var parameter = new DialogParameters<DeleteProductDialog>();
+            parameter.Add(x => x.product, product);
+
+            var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.ExtraSmall };
+
+            var dialog = await DialogService.ShowAsync<DeleteProductDialog>("Delete", parameter, options);
+
+            var result = dialog.Result;
+
+            if(result.IsCompleted)
+            {
+                NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
+            }
+        
         }
     }
 }

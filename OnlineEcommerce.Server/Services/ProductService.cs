@@ -78,6 +78,31 @@ namespace OnlineEcommerce.Server.Services
             }
         }
 
+        public async Task<Response> DeleteProduct(DTO_Product dtoproduct)
+        {
+            try
+            {
+                var product = await _product.GetById(dtoproduct.Id);
+                await _product.DeleteProduct(product);
+                await _productImages.DeleteImagesByProductId(dtoproduct.Id);
+                await _productVariant.DeleteVariantByProductId(dtoproduct.Id);
+
+                return new Response
+                {
+                    IsSuccess = true,
+                    StatusMessage = "Successfully deleted the product."
+                };
+            }
+            catch
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    StatusMessage = "Failed to delete the product."
+                };
+            }
+        }
+
         public async Task<IEnumerable<DTO_Product>> GetProducts()
         {
             var domainProducts = await _product.GetAll();

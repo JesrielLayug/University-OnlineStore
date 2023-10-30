@@ -6,5 +6,6 @@ namespace OnlineEcommerce.Server.Data.Repositories.Contracts
     {
         Task<IEnumerable<ProductImages>> GetAll();
         Task<int> CreateProductImages(ProductImages images);
+        Task<bool> DeleteImagesByProductId(int ProductId);
     }
 }

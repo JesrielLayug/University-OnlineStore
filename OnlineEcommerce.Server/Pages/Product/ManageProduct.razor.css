@@ -13,4 +13,5 @@
 .mud-table-head .header-centered th {
     text-align: center;
     font-size: 1.2em;
+    margin-bottom: 5px;
 }

@@ -40,9 +40,17 @@ namespace OnlineEcommerce.Server.Data.Repositories
 
         public async Task<bool> DeleteProduct(Product product)
         {
-            _db.Products.Remove(product);
-            var change = await _db.SaveChangesAsync();
-            return change > 0;
+            try
+            {
+                _db.Products.Remove(product);
+                var change = await _db.SaveChangesAsync();
+                return change > 0;
+            }
+            catch (DbUpdateException)
+            {
+                // Handle exceptions or log errors as needed
+                return false; // Return false to indicate failure
+            }
         }
 
         public async Task<bool> UpdateProduct(Product product)

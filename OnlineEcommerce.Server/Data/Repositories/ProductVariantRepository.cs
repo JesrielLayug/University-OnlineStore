@@ -21,6 +21,14 @@ namespace OnlineEcommerce.Server.Data.Repositories
             return productVariant.Id;
         }
 
+        public async Task<bool> DeleteVariantByProductId(int ProductId)
+        {
+            var variant = await _db.ProductVariants.Where(x => x.ProductId == ProductId).ToListAsync();
+            _db.ProductVariants.RemoveRange(variant);
+            var change = await _db.SaveChangesAsync();
+            return change > 0;
+        }
+
         public async Task<IEnumerable<ProductVariant>> GetAll()
         {
             var variants = await _db.ProductVariants.ToListAsync();

@@ -20,6 +20,14 @@ namespace OnlineEcommerce.Server.Data.Repositories
             return images.Id;
         }
 
+        public async Task<bool> DeleteImagesByProductId(int ProductId)
+        {
+            var image = await _db.ProductImages.Where(x => x.ProductId == ProductId).ToListAsync();
+            _db.ProductImages.RemoveRange(image);
+            var change = await _db.SaveChangesAsync();
+            return change > 0;
+        }
+
         public async Task<IEnumerable<ProductImages>> GetAll()
         {
             var images = await _db.ProductImages.ToListAsync();

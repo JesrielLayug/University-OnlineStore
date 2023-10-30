@@ -1,0 +1,21 @@
+﻿@inherits DeleteProductDialogBase
+
+<MudDialog>
+    <DialogContent>
+        <MudText>Do you really want to delete this product? This process cannot be undone.</MudText>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Disabled="@_processing" Color="Color.Error" Variant="Variant.Filled" OnClick="Submit">
+            @if (_processing)
+            {
+                <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                <MudText Class="ms-2">Processing</MudText>
+            }
+            else
+            {
+                <MudText>Delete</MudText>
+            }
+        </MudButton>
+    </DialogActions>
+</MudDialog>
