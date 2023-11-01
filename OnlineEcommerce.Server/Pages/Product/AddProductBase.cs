@@ -18,20 +18,41 @@ namespace OnlineEcommerce.Server.Pages.Product
         [Inject]
         ISnackbar Snackbar { get; set; }
 
+        [Inject]
+        NavigationManager NavigationManager { get; set; }
 
+
+        // Adding Products Properties
         public List<DTO_ProductImage> Images = new List<DTO_ProductImage>();
         public List<DTO_ProductVariant> Variants = new List<DTO_ProductVariant>();
 
-        public DTO_ProductDetail product = new DTO_ProductDetail();
+        public DTO_ProductDetail productDetail = new DTO_ProductDetail();
         public DTO_ProductVariant variant = new DTO_ProductVariant();
         public DTO_ProductImage productImage;
 
-
         public bool _processing = false;
+
+
+        // Edit Products Property
+        public DTO_Product Product;
 
         public AddProductBase()
         {
             LoadsComponents().Wait();
+        }
+
+        protected override async Task OnInitializedAsync()
+        {
+            Product = StaticProduct.GetProduct();
+
+            if (Product.Id != 0)
+            {
+                productDetail.Name = Product.Name;
+                productDetail.Description = Product.Description;
+                productDetail.BasePrice = Product.BasePrice;
+                Images = Product.Images;
+                Variants = Product.Variants;
+            }
         }
 
         public void AddVariant()
@@ -88,13 +109,14 @@ namespace OnlineEcommerce.Server.Pages.Product
 
         public async Task LoadsComponents()
         {
+
             Variants = StaticListProductVariant.GetVariants();
             Images = StaticListProductImage.GetImages();
         }
 
         public void ResetPage()
         {
-            product = new DTO_ProductDetail();
+            productDetail = new DTO_ProductDetail();
             StaticListProductImage.RemoveAll(Images);
             StaticListProductVariant.RemoveAll(Variants);
         }
@@ -115,9 +137,9 @@ namespace OnlineEcommerce.Server.Pages.Product
             {
                 var response = await ProductService.CreateProduct(new DTO_Product
                 {
-                    Name = product.Name,
-                    Description = product.Description,
-                    BasePrice = product.BasePrice,
+                    Name = productDetail.Name,
+                    Description = productDetail.Description,
+                    BasePrice = productDetail.BasePrice,
                     Variants = Variants,
                     Images = Images
                 });
@@ -135,6 +157,13 @@ namespace OnlineEcommerce.Server.Pages.Product
                     Snackbar.Add(response.StatusMessage, Severity.Error);
                 }
             } 
+        }
+
+        public async Task ClearForm(DTO_Product product)
+        {
+            await StaticProduct.RemoveProductToEdit(product);
+            ResetPage();
+            StateHasChanged();
         }
 
     }

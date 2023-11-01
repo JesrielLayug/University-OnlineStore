@@ -2,16 +2,47 @@
 
 namespace OnlineEcommerce.Server.Utilities
 {
+    public class EventArgsEditProduct : EventArgs
+    {
+        public DTO_Product _product { get; }
+
+        public EventArgsEditProduct(DTO_Product product)
+        {
+            _product = product;
+        }
+    }
+
     public static class StaticProduct
     {
-        public static int Id { get; set; }
-        public static string Name { get; set; }
-        public static string Description { get; set; }
-        public static int BasePrice { get; set; }
-        public static string ImageUrl { get; set; }
-        public static List<DTO_ProductImage> Images { get; set; }
-        public static List<DTO_ProductVariant> Variants { get; set; }
-        public static string SKU { get; set; }
-        public static string OrganizationName { get; set; } = "COOP";
+        private static DTO_Product Product = new DTO_Product();
+        public static event EventHandler<EventArgsEditProduct> ClickEdit;
+        public static event EventHandler<EventArgsEditProduct> ClickRemove;
+
+        public static void InsertProductToEdit(DTO_Product product)
+        {
+            Product = product;
+            Add(product);
+        }
+
+        public static void Add(DTO_Product product)
+        {
+            ClickEdit?.Invoke(null, new EventArgsEditProduct(product));
+        }
+
+        public static async Task RemoveProductToEdit(DTO_Product product)
+        {
+            Product = new DTO_Product();
+            await Remove(product);
+        }
+
+        public static async Task Remove(DTO_Product product)
+        {
+            ClickRemove?.Invoke(null, new EventArgsEditProduct(product));
+        }
+
+        public static DTO_Product GetProduct()
+        {
+            return Product;
+        }
     }
 }

@@ -26,19 +26,19 @@
             <MudItem xs="12" lg="8">
                 <MudCard Class="px-2 py-2" Outlined="true">
                     <MudCardContent Class="pa-5">
-                        <EditForm Model="@product" OnValidSubmit="AddingProductProcessing">
+                        <EditForm Model="@productDetail" OnValidSubmit="AddingProductProcessing">
                             <DataAnnotationsValidator />
                             <MudGrid>
                                 <MudItem xs="6">
-                                    <MudTextField @bind-Value="product.Name" Label="Product Name"
+                                    <MudTextField @bind-Value="productDetail.Name" Label="Product Name"
                                                   Variant="Variant.Outlined"></MudTextField>
                                 </MudItem>
                                 <MudItem xs="6">
-                                    <MudTextField @bind-Value="product.BasePrice" Label="Price"
+                                    <MudTextField @bind-Value="productDetail.BasePrice" Label="Price"
                                                   Variant="Variant.Outlined"></MudTextField>
                                 </MudItem>
                             </MudGrid>
-                            <MudTextField @bind-Value="product.Description" T="string" Label="Description"
+                            <MudTextField @bind-Value="productDetail.Description" T="string" Label="Description"
                                           Variant="Variant.Outlined" Lines="7" Class="my-6" />
                         </EditForm>
                         <MudText Typo="Typo.caption" Style="font-size: 12px; color: #8f8f8fff;">
@@ -203,16 +203,34 @@
     </MudItem>
 </MudGrid>
 <MudContainer Class="d-flex align-center justify-end px-0">
-    <MudButton Disabled="@_processing" OnClick="AddingProductProcessing" Class="px-15 py-3 me-2" Size="Size.Large" Variant="Variant.Filled" Color="Color.Info">
-        @if (_processing)
-        {
-            <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
-            <MudText Class="ms-2">Processing</MudText>
-        }
-        else
-        {
-            <MudText>Add Product</MudText>
-        }
-    </MudButton>
+    @if(StaticProduct.GetProduct().Id == 0)
+    {
+        <MudButton Disabled="@_processing" OnClick="AddingProductProcessing" Class="px-15 py-3 me-2" Size="Size.Large" Variant="Variant.Filled" Color="Color.Info">
+            @if (_processing)
+            {
+                <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                <MudText Class="ms-2">Processing</MudText>
+            }
+            else
+            {
+                <MudText>Add Product</MudText>
+            }
+        </MudButton>
+    }
+    else
+    {
+        <MudButton @onclick="() => ClearForm(Product)" Class="px-15 py-3 me-2" Size="Size.Large" Variant="Variant.Filled" Color="Color.Error">Cancel</MudButton>
+        <MudButton Disabled="@_processing" Class="px-15 py-3 me-2" Size="Size.Large" Variant="Variant.Filled" Color="Color.Info">
+            @if (_processing)
+            {
+                <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                <MudText Class="ms-2">Processing</MudText>
+            }
+            else
+            {
+                <MudText>Save Product</MudText>
+            }
+        </MudButton>
+    }
 </MudContainer>
 

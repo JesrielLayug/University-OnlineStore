@@ -48,15 +48,15 @@ else
                     </MudTHeadRow>
                     <MudTHeadRow>
                         <MudTh>Product Name</MudTh>
-
                         <MudTh>Stocks</MudTh>
                         <MudTh>Price</MudTh>
                         <MudTh>SKU</MudTh>
+                        <MudTh>Date Created</MudTh>
                         <MudTh>Action</MudTh>
                     </MudTHeadRow>
                 </HeaderContent>
                 <RowTemplate>
-                    <MudTd DataLabel="Product Name" Class="d-flex justify-center align-center px-0">
+                    <MudTd DataLabel="Product Name" Class="d-flex justify-center align-center">
                         @{
                             var productImage = context.Images
                             .FirstOrDefault();
@@ -67,40 +67,6 @@ else
                             @Text.LimitText(context.Description, 25)
                         </MudContainer>
                     </MudTd>
-                    @*<MudTd DataLabel="Sizes" Class="ps-0 pe-1">
-                        @if (context.Variants[0].Size.Count() != 0)
-                        {
-                            <MudChipSet>
-                                @{
-                                    var Size = context.Variants
-                            .Select(variant => variant.Size)
-                            .Distinct()
-                            .ToList();
-                                }
-
-                                @foreach (var size in Size)
-                                {
-                                    <MudChip Color="Color.Info" Text="@size"></MudChip>
-                                }
-                            </MudChipSet>
-                        }
-                    </MudTd>
-                    <MudTd DataLabel="Colors">
-                        <MudContainer Class="pa-0 ma-0 d-flex">
-                            @{
-                                var ProductColors = context.Variants
-                                .Select(variant => variant.Color.Value)
-                                .Distinct()
-                                .ToList();
-                            }
-
-                            @foreach (var color in ProductColors)
-                            {
-                                <div style="width: 20px; height: 20px; background-color: @color; margin-right: 7px; box-shadow: 0px 1px 7px 0px rgba(1,1,1,0.5); border-radius: 50%"></div>
-                            }
-
-                        </MudContainer>
-                    </MudTd>*@
                     <MudTd DataLabel="Stocks">
                         @{
                             int stocks = 0;
@@ -112,19 +78,17 @@ else
                         @stocks
                     </MudTd>
                     <MudTd DataLabel="Price">@context.BasePrice</MudTd>
-                    <MudTd DataLabel="SKU">
+                    <MudTd DataLabel="SKU" Class="pe-0">
                         @foreach (var variant in context.Variants)
                         {
-                            product.SKU = variant.SKU;
+                            @variant.SKU
+                            break;
                         }
-                        @product.SKU
                     </MudTd>
-                    <MudTd DataLabel="Action">
-                        @{
-                            context.SKU = product.SKU;
-                        }
-                        <MudIconButton @onclick="() => ShowDeleteDialog(context)" Icon="@Icons.Material.Filled.Delete" Variant="Variant.Outlined" Color="Color.Info" Size="Size.Small" Class="me-1" />
-                        <MudIconButton Icon="@Icons.Material.Filled.EditNote" Variant="Variant.Outlined" Color="Color.Info" Size="Size.Small" />
+                    <MudTd DataLabel="Date Created" Class="pe-0">@context.DateCreated</MudTd>
+                    <MudTd DataLabel="Action" Class="pe-0">
+                        <MudButton @onclick="() => EditProduct(context)" Variant="Variant.Outlined" Color="Color.Tertiary" Size="Size.Small">Edit</MudButton>
+                        <MudButton @onclick="() => ShowDeleteDialog(context)" Variant="Variant.Outlined" Color="Color.Error" Size="Size.Small" Class="me-1">Delete</MudButton>
                     </MudTd>
                 </RowTemplate>
             </MudTable>
@@ -134,6 +98,41 @@ else
 }
 
 
+
+@*<MudTd DataLabel="Sizes" Class="ps-0 pe-1">
+      @if (context.Variants[0].Size.Count() != 0)
+      {
+          <MudChipSet>
+              @{
+                  var Size = context.Variants
+          .Select(variant => variant.Size)
+          .Distinct()
+          .ToList();
+              }
+  
+              @foreach (var size in Size)
+              {
+                  <MudChip Color="Color.Info" Text="@size"></MudChip>
+              }
+          </MudChipSet>
+      }
+  </MudTd>
+  <MudTd DataLabel="Colors">
+      <MudContainer Class="pa-0 ma-0 d-flex">
+          @{
+              var ProductColors = context.Variants
+              .Select(variant => variant.Color.Value)
+              .Distinct()
+              .ToList();
+          }
+  
+          @foreach (var color in ProductColors)
+          {
+              <div style="width: 20px; height: 20px; background-color: @color; margin-right: 7px; box-shadow: 0px 1px 7px 0px rgba(1,1,1,0.5); border-radius: 50%"></div>
+          }
+  
+      </MudContainer>
+  </MudTd>*@
 
     
 

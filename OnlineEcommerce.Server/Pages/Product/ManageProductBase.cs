@@ -18,15 +18,16 @@ namespace OnlineEcommerce.Server.Pages.Product
         [Inject]
         IDialogService DialogService { get; set; }
 
-        public string searchString1 = "";
         public bool isLoading = true;
+
+        // For limiting the description and title text of a product
         public StringFunction Text = new StringFunction();
 
-
+        // For table of Products
+        public string searchString1 = "";
         public HashSet<DTO_Product> selectedProducts = new HashSet<DTO_Product>();
         public IEnumerable<DTO_Product> Products;
 
-        public DTO_Product product = new DTO_Product();
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -75,6 +76,12 @@ namespace OnlineEcommerce.Server.Pages.Product
                 NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
             }
         
+        }
+
+        public async Task EditProduct(DTO_Product product)
+        {
+            StaticProduct.InsertProductToEdit(product);
+            NavigationManager.NavigateTo("/create-product", forceLoad: true);
         }
     }
 }

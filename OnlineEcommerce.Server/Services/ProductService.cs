@@ -28,12 +28,15 @@ namespace OnlineEcommerce.Server.Services
         {
             try
             {
+                DateTime dateTimeToInsert = DateTime.Now;
+                string formattedDateTime = dateTimeToInsert.ToString("MM-dd-yyyy");
 
                 var domainProduct = new Product
                 {
                     Name = product.Name,
                     Description = product.Description,
                     Price = product.BasePrice,
+                    DateCreated = formattedDateTime,
                     OrganizationId = await _organization.GetById(product.OrganizationName)
                 };
 

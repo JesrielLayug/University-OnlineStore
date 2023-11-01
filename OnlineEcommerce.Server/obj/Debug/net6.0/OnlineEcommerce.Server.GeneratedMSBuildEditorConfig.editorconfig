@@ -32,6 +32,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxDb21wb25lbnRzXERlbGV0ZVByb2R1Y3REaWFsb2cucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/LAYUG/Desktop/UniversityStore/OnlineEcommerce.Server/Pages/Product/Components/ShowProductDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxDb21wb25lbnRzXFNob3dQcm9kdWN0RGlhbG9nLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/LAYUG/Desktop/UniversityStore/OnlineEcommerce.Server/Pages/User/User.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlclxVc2VyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
