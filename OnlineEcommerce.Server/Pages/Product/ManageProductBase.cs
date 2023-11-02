@@ -81,7 +81,7 @@ namespace OnlineEcommerce.Server.Pages.Product
         public async Task EditProduct(DTO_Product product)
         {
             StaticProduct.InsertProductToEdit(product);
-            NavigationManager.NavigateTo("/create-product", forceLoad: true);
+            NavigationManager.NavigateTo("/edit-product", forceLoad: true);
         }
     }
 }

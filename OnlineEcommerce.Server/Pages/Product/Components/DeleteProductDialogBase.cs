@@ -29,7 +29,7 @@ namespace OnlineEcommerce.Server.Pages.Product.Components
             Snackbar.Clear();
             Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
 
-            var response = await ProductService.DeleteProduct(product);
+            var response = await ProductService.Delete(product);
             if(response.IsSuccess)
             {
                 _processing = false;

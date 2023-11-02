@@ -135,7 +135,7 @@ namespace OnlineEcommerce.Server.Pages.Product
             }
             else 
             {
-                var response = await ProductService.CreateProduct(new DTO_Product
+                var response = await ProductService.Create(new DTO_Product
                 {
                     Name = productDetail.Name,
                     Description = productDetail.Description,
@@ -158,6 +158,11 @@ namespace OnlineEcommerce.Server.Pages.Product
                 }
             } 
         }
+
+        //public async Task UpdateProduct(DTO_Product product)
+        //{
+
+        //}
 
         public async Task ClearForm(DTO_Product product)
         {

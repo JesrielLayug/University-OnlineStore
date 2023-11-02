@@ -31,14 +31,14 @@ namespace OnlineEcommerce.Server.Data.Repositories
             return product;
         }
 
-        public async Task<int> CreateProduct(Product product)
+        public async Task<int> Create(Product product)
         {
             _db.Products.Add(product);
             await _db.SaveChangesAsync();
             return product.Id;
         }
 
-        public async Task<bool> DeleteProduct(Product product)
+        public async Task<bool> Delete(Product product)
         {
             try
             {
@@ -48,12 +48,11 @@ namespace OnlineEcommerce.Server.Data.Repositories
             }
             catch (DbUpdateException)
             {
-                // Handle exceptions or log errors as needed
-                return false; // Return false to indicate failure
+                return false;
             }
         }
 
-        public async Task<bool> UpdateProduct(Product product)
+        public async Task<bool> Update(Product product)
         {
             _db.Products.Update(product);
             var change = await _db.SaveChangesAsync();

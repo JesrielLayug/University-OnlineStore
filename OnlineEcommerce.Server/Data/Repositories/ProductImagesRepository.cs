@@ -13,14 +13,14 @@ namespace OnlineEcommerce.Server.Data.Repositories
             this._db = db;
         }
 
-        public async Task<int> CreateProductImages(ProductImages images)
+        public async Task<int> Create(ProductImages images)
         {
             _db.ProductImages.Add(images);
             await _db.SaveChangesAsync();
             return images.Id;
         }
 
-        public async Task<bool> DeleteImagesByProductId(int ProductId)
+        public async Task<bool> Delete(int ProductId)
         {
             var image = await _db.ProductImages.Where(x => x.ProductId == ProductId).ToListAsync();
             _db.ProductImages.RemoveRange(image);
@@ -32,6 +32,13 @@ namespace OnlineEcommerce.Server.Data.Repositories
         {
             var images = await _db.ProductImages.ToListAsync();
             return images;
+        }
+
+        public async Task<bool> Update(ProductImages images)
+        {
+            _db.ProductImages.Update(images);
+            var change = await _db.SaveChangesAsync();
+            return change > 0;
         }
     }
 }

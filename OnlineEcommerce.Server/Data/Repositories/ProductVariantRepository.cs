@@ -14,14 +14,14 @@ namespace OnlineEcommerce.Server.Data.Repositories
             this._db = db;
         }
 
-        public async Task<int> AddProductVariant(ProductVariant productVariant)
+        public async Task<int> Create(ProductVariant productVariant)
         {
             _db.ProductVariants.Add(productVariant);
             await _db.SaveChangesAsync();
             return productVariant.Id;
         }
 
-        public async Task<bool> DeleteVariantByProductId(int ProductId)
+        public async Task<bool> Delete(int ProductId)
         {
             var variant = await _db.ProductVariants.Where(x => x.ProductId == ProductId).ToListAsync();
             _db.ProductVariants.RemoveRange(variant);
@@ -35,10 +35,17 @@ namespace OnlineEcommerce.Server.Data.Repositories
             return variants;
         }
 
-        public async Task<int?> GetProductVariantBySKU(string SKU)
+        public async Task<int?> GetBySKU(string SKU)
         {
             var product = await _db.ProductVariants.FirstOrDefaultAsync(p => p.SKU == SKU);
             return product.ProductId;
+        }
+
+        public async Task<bool> Update(ProductVariant productVariant)
+        {
+            _db.ProductVariants.Update(productVariant);
+            var change = await _db.SaveChangesAsync();
+            return change > 0;
         }
     }
 }

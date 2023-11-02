@@ -5,7 +5,8 @@ namespace OnlineEcommerce.Server.Data.Repositories.Contracts
     public interface IProductImagesRepository
     {
         Task<IEnumerable<ProductImages>> GetAll();
-        Task<int> CreateProductImages(ProductImages images);
-        Task<bool> DeleteImagesByProductId(int ProductId);
+        Task<int> Create(ProductImages images);
+        Task<bool> Delete(int ProductId);
+        Task<bool> Update(ProductImages images);
     }
 }

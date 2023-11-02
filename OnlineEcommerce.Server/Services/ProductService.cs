@@ -24,7 +24,7 @@ namespace OnlineEcommerce.Server.Services
             this._productImages = productImages;
         }
 
-        public async Task<Response> CreateProduct(DTO_Product product)
+        public async Task<Response> Create(DTO_Product product)
         {
             try
             {
@@ -40,11 +40,11 @@ namespace OnlineEcommerce.Server.Services
                     OrganizationId = await _organization.GetById(product.OrganizationName)
                 };
 
-                var newProductId = await _product.CreateProduct(domainProduct);
+                var newProductId = await _product.Create(domainProduct);
 
                 foreach(var image in product.Images)
                 {
-                    await _productImages.CreateProductImages(new ProductImages
+                    await _productImages.Create(new ProductImages
                     {
                         ProductId = newProductId,
                         Url = image.Url,
@@ -54,7 +54,7 @@ namespace OnlineEcommerce.Server.Services
 
                 foreach(var variant in  product.Variants)
                 {
-                    await _productVariant.AddProductVariant(new ProductVariant
+                    await _productVariant.Create(new ProductVariant
                     {
                         ProductId = newProductId,
                         Size = variant.Size,
@@ -81,14 +81,14 @@ namespace OnlineEcommerce.Server.Services
             }
         }
 
-        public async Task<Response> DeleteProduct(DTO_Product dtoproduct)
+        public async Task<Response> Delete(DTO_Product dtoproduct)
         {
             try
             {
                 var product = await _product.GetById(dtoproduct.Id);
-                await _product.DeleteProduct(product);
-                await _productImages.DeleteImagesByProductId(dtoproduct.Id);
-                await _productVariant.DeleteVariantByProductId(dtoproduct.Id);
+                await _product.Delete(product);
+                await _productImages.Delete(dtoproduct.Id);
+                await _productVariant.Delete(dtoproduct.Id);
 
                 return new Response
                 {
@@ -115,6 +115,11 @@ namespace OnlineEcommerce.Server.Services
             var dtoProducts = domainProducts.ConvertToDto(domainVariants, domainImages);
 
             return dtoProducts;
+        }
+
+        public async Task<Response> Update(DTO_Product product)
+        {
+            throw new NotImplementedException();
         }
     }
 }
