@@ -1,0 +1,15 @@
+﻿<MudNavMenu Rounded="true" Margin="Margin.Normal" Color="Color.Info" Class="px-2 py-1">
+    <MudTextField @bind-Value="searchString1" Placeholder="Search" Variant="Variant.Outlined"
+                  Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search"
+                  IconSize="Size.Small" Style="font-size: 14px;" Class="mx-1 mb-4"></MudTextField>
+    <MudNavLink Class="my-2" Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Home">Home</MudNavLink>
+    <MudNavLink Class="my-2" Href="user" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Groups">Store</MudNavLink>
+    <MudNavLink Class="my-2" Href="order" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.ShoppingCart">Cart</MudNavLink>
+    <MudNavLink Class="my-2" Href="order" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.ShoppingCart">Profile</MudNavLink>
+    <MudNavLink Class="my-2" Href="logout" Match="NavLinkMatch.All" Icon="@Icons.Material.Rounded.Logout">Logout</MudNavLink>
+</MudNavMenu>
+
+
+@code{
+    string searchString1;
+}
