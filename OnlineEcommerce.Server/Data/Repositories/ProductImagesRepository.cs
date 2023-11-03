@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineEcommerce.Server.Data.Repositories.Contracts;
 using OnlineEcommerce.Server.Models;
+using OnlineEcommerce.Server.Models.DTOs;
 
 namespace OnlineEcommerce.Server.Data.Repositories
 {
@@ -20,7 +21,8 @@ namespace OnlineEcommerce.Server.Data.Repositories
             return images.Id;
         }
 
-        public async Task<bool> Delete(int ProductId)
+
+        public async Task<bool> DeleteByProductId(int ProductId)
         {
             var image = await _db.ProductImages.Where(x => x.ProductId == ProductId).ToListAsync();
             _db.ProductImages.RemoveRange(image);
@@ -34,11 +36,24 @@ namespace OnlineEcommerce.Server.Data.Repositories
             return images;
         }
 
+        public async Task<List<ProductImages>> GetByProductId(int productId)
+        {
+            var images =  await _db.ProductImages.Where(i => i.ProductId == productId).ToListAsync();
+            return images;
+        }
+
         public async Task<bool> Update(ProductImages images)
         {
             _db.ProductImages.Update(images);
             var change = await _db.SaveChangesAsync();
             return change > 0;
+        }
+
+        public async Task<bool> Delete(ProductImages images)
+        {
+            _db.ProductImages.Remove(images);
+            var changes = await _db.SaveChangesAsync();
+            return changes > 0;
         }
     }
 }

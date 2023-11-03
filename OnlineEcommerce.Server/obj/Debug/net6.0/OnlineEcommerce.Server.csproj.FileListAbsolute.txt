@@ -74,8 +74,8 @@ C:\Users\LAYUG\Desktop\UniversityStore\OnlineEcommerce.Server\obj\Debug\net6.0\O
 C:\Users\LAYUG\Desktop\UniversityStore\OnlineEcommerce.Server\obj\Debug\net6.0\OnlineEcommerce.Server.genruntimeconfig.cache
 C:\Users\LAYUG\Desktop\UniversityStore\OnlineEcommerce.Server\obj\Debug\net6.0\ref\OnlineEcommerce.Server.dll
 C:\Users\LAYUG\Desktop\UniversityStore\OnlineEcommerce.Server\obj\Debug\net6.0\scopedcss\projectbundle\OnlineEcommerce.Server.bundle.scp.css
-C:\Users\LAYUG\Desktop\UniversityStore\OnlineEcommerce.Server\obj\Debug\net6.0\scopedcss\Pages\Product\AddProduct.razor.rz.scp.css
 C:\Users\LAYUG\Desktop\UniversityStore\OnlineEcommerce.Server\obj\Debug\net6.0\scopedcss\Shared\Components\Loading.razor.rz.scp.css
 C:\Users\LAYUG\Desktop\UniversityStore\OnlineEcommerce.Server\bin\Debug\net6.0\Microsoft.Extensions.Localization.dll
 C:\Users\LAYUG\Desktop\UniversityStore\OnlineEcommerce.Server\bin\Debug\net6.0\Microsoft.Extensions.Localization.Abstractions.dll
 C:\Users\LAYUG\Desktop\UniversityStore\OnlineEcommerce.Server\obj\Debug\net6.0\scopedcss\Pages\Product\ManageProduct.razor.rz.scp.css
+C:\Users\LAYUG\Desktop\UniversityStore\OnlineEcommerce.Server\obj\Debug\net6.0\scopedcss\Pages\Product\EditProduct.razor.rz.scp.css

@@ -14,7 +14,7 @@ namespace OnlineEcommerce.Server.Utilities
 
     public static class StaticListProductVariant
     {
-        private static List<DTO_ProductVariant> Variants = new List<DTO_ProductVariant>();
+        public static List<DTO_ProductVariant> Variants = new List<DTO_ProductVariant>();
         public static event EventHandler<EventArgsVariant> ClickAddVariant;
         public static event EventHandler<EventArgsVariant> ClickRemoveVariant;
 

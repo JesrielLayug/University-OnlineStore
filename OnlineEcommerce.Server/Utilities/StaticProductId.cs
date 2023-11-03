@@ -4,43 +4,49 @@ namespace OnlineEcommerce.Server.Utilities
 {
     public class EventArgsEditProduct : EventArgs
     {
-        public DTO_Product _product { get; }
+        public int _product { get; }
 
-        public EventArgsEditProduct(DTO_Product product)
+        public EventArgsEditProduct(int product)
         {
             _product = product;
         }
     }
 
-    public static class StaticProduct
+    public static class StaticProductId
     {
-        private static DTO_Product Product = new DTO_Product();
+        private static int Product;
         public static event EventHandler<EventArgsEditProduct> ClickEdit;
         public static event EventHandler<EventArgsEditProduct> ClickRemove;
 
-        public static void InsertProductToEdit(DTO_Product product)
+        public static void InsertProductToEdit(int product)
         {
             Product = product;
             Add(product);
         }
 
-        public static void Add(DTO_Product product)
+        public static void Add(int product)
         {
             ClickEdit?.Invoke(null, new EventArgsEditProduct(product));
         }
 
-        public static async Task RemoveProductToEdit(DTO_Product product)
+        public static async Task RemoveProductToEdit(int product)
         {
-            Product = new DTO_Product();
+            Product = 0;
             await Remove(product);
         }
 
-        public static async Task Remove(DTO_Product product)
+        public static void EditProduct(int product)
+        {
+            Product = product;
+            ClickEdit?.Invoke(null, new EventArgsEditProduct(product));
+        }
+
+        public static async Task Remove(int product)
         {
             ClickRemove?.Invoke(null, new EventArgsEditProduct(product));
         }
 
-        public static DTO_Product GetProduct()
+        public static int GetProduct()
         {
             return Product;
         }

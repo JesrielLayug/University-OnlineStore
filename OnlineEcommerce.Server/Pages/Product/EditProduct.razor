@@ -1,7 +1,7 @@
 ﻿@page "/edit-product"
 @using System.ComponentModel.DataAnnotations;
 @using static MudBlazor.CategoryTypes;
-@inherits AddProductBase
+@inherits EditProductBase
 @inject ISnackbar Snackbar
 
 
@@ -88,7 +88,7 @@
                         @if(Images.Count != 0)
                         {
                             <MudItem xs="12">
-                                <MudChipSet AllClosable="true" OnClose="RemoveChip">
+                                <MudChipSet AllClosable="true" OnClose="RemoveImageChip">
                                     @foreach (var image in Images)
                                     {
                                         <MudChip Color="Color.Info" Text="@image.Url"></MudChip>
@@ -114,7 +114,7 @@
             <MudItem xs="12" lg="8">
                 <MudCard Outlined="true">
                     <MudCardContent>
-                        <MudGrid Class="pa-4" Spacing="2">
+                        <MudGrid Class="pa-4 d-flex justify-center" Spacing="3">
                             <MudItem xs="12" md="3">
                                 <MudTextField @bind-Value="variant.Size" Label="Size"
                                               Variant="Variant.Outlined"></MudTextField>
@@ -122,16 +122,16 @@
                             <MudItem xs="12" md="3">
                                 <MudColorPicker @bind-Value="variant.Color" Label="Color" DisableToolbar="false" Variant="Variant.Outlined" />
                             </MudItem>
-                            <MudItem xs="12" md="2">
-                                <MudTextField @bind-Value="@variant.PriceModifier" Label="Price"
+                            <MudItem xs="12" md="3">
+                                <MudTextField @bind-Value="@variant.PriceModifier" Label="Price Modifier"
                                               Variant="Variant.Outlined" ></MudTextField>
                             </MudItem>
-                            <MudItem xs="12" md="2">
+@*                            <MudItem xs="12" md="2">
                                 <MudTextField @bind-Value="@variant.Stock" Label="Stock"
                                               Variant="Variant.Outlined" ></MudTextField>
-                            </MudItem>
-                            <MudItem xs="12" md="2">
-                                <MudButton Variant="Variant.Outlined" Color="Color.Info" OnClick="AddVariant" Class="px-10 mt-1" Style="height: 4em;">Add</MudButton>
+                            </MudItem>*@
+                            <MudItem xs="12" md="3">
+                                <MudButton Variant="Variant.Outlined" Color="Color.Info" OnClick="AddVariant" Class="px-16 mt-1" Style="height: 4.5em;" Size="Size.Small">Add</MudButton>
                             </MudItem>
                         </MudGrid>
 
@@ -146,7 +146,7 @@
                             @if (Variants.Any(variant => !string.IsNullOrEmpty(variant.Size)))
                             {
                                 <MudText Typo="Typo.subtitle1">Sizes</MudText>
-                                <MudChipSet AllClosable="true" OnClose="RemoveChip">
+                                <MudChipSet AllClosable="true" OnClose="RemoveVariantChip">
 
                                     @foreach (var size in Sizes)
                                     {
@@ -159,7 +159,7 @@
                             }
 
                             <MudText Typo="Typo.subtitle1" Class="mt-3">Colors</MudText>
-                            <MudChipSet AllClosable="true" OnClose="RemoveChip">
+                            <MudChipSet AllClosable="true" OnClose="RemoveVariantChip">
                                 @{
                                     var ProductColor = Variants
                                         .Select(variant => variant.Color)
@@ -172,29 +172,24 @@
                                 }
                             </MudChipSet>
 
-                            <MudSimpleTable Hover="true" Bordered="true" Outlined="true" Striped="true" Style="overflow-x: auto;" Class="mt-7">
-                                <thead>
-                                    <tr>
-                                        <th>Size</th>
-                                        <th>Color</th>
-                                        <th>Price Modifier</th>
-                                        <th>Stock</th>
-                                    </tr>
-
-                                </thead>
-                                <tbody>
-
-                                    @foreach (var v in Variants)
-                                    {
-                                        <tr>
-                                            <td>@v.Size</td>
-                                            <td>@v.Color</td>
-                                            <td>@v.PriceModifier</td>
-                                            <td>@v.Stock</td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </MudSimpleTable>
+                            <MudTable Items="@Variants" Bordered="true" Outlined="true" Striped="true" Style="overflow-x: auto;" Class="mt-7" @bind-SelectedItem="@selectedVariant">
+                                <HeaderContent>
+                                    <MudTh>Size</MudTh>
+                                    <MudTh>Color</MudTh>
+                                    <MudTh>Price Modifier</MudTh>
+                                    <MudTh>Stock</MudTh>
+                                </HeaderContent>
+                                <RowTemplate>
+                                        <MudTd DataLabel="Size">@context.Size</MudTd>
+                                        <MudTd DataLabel="Color">@context.Color</MudTd>
+                                        <MudTd DataLabel="Price Modifier">
+                                            <input type="number" class="custom-input" @bind-value="@context.PriceModifier" />
+                                        </MudTd>
+                                        <MudTd DataLabel="Stock">
+                                            <input type="number" class="custom-input" @bind-value="@context.Stock"/>
+                                        </MudTd>
+                                </RowTemplate>
+                            </MudTable>
                         }
                     </MudCardContent>
                 </MudCard>
@@ -203,7 +198,7 @@
     </MudItem>
 </MudGrid>
 <MudContainer Class="d-flex align-center justify-end px-0">
-    @if(StaticProduct.GetProduct().Id == 0)
+    @if(StaticProductId.GetProduct() == 0)
     {
         <MudButton Disabled="@_processing" OnClick="AddingProductProcessing" Class="px-15 py-3 me-2" Size="Size.Large" Variant="Variant.Filled" Color="Color.Info">
             @if (_processing)
@@ -219,8 +214,8 @@
     }
     else
     {
-        <MudButton @onclick="() => ClearForm(Product)" Class="px-15 py-3 me-2" Size="Size.Large" Variant="Variant.Filled" Color="Color.Error">Cancel</MudButton>
-        <MudButton Disabled="@_processing" Class="px-15 py-3 me-2" Size="Size.Large" Variant="Variant.Filled" Color="Color.Info">
+        <MudButton @onclick="ClearForm" Class="px-15 py-3 me-2" Size="Size.Large" Variant="Variant.Filled" Color="Color.Error">Cancel</MudButton>
+        <MudButton @onclick="UpdateProduct" Disabled="@_processing" Class="px-15 py-3 me-2" Size="Size.Large" Variant="Variant.Filled" Color="Color.Info">
             @if (_processing)
             {
                 <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />

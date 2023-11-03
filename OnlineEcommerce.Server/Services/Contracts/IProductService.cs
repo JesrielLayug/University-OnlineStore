@@ -6,6 +6,7 @@ namespace OnlineEcommerce.Server.Services.Contracts
     public interface IProductService
     {
         Task<IEnumerable<DTO_Product>> GetProducts();
+        Task<DTO_Product> GetById(int id);
         Task<Response> Create(DTO_Product product);
         Task<Response> Update(DTO_Product product);
         Task<Response> Delete(DTO_Product product);

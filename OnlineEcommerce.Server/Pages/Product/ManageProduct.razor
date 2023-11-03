@@ -48,26 +48,27 @@ else
                     </MudTHeadRow>
                     <MudTHeadRow>
                         <MudTh>Product Name</MudTh>
-                        <MudTh>Stocks</MudTh>
-                        <MudTh>Price</MudTh>
-                        <MudTh>SKU</MudTh>
-                        <MudTh>Date Created</MudTh>
-                        <MudTh>Action</MudTh>
+                        <MudTh Style="text-align:center">Stocks</MudTh>
+                        <MudTh Style="text-align:center">Price</MudTh>
+                        <MudTh Style="text-align:center">SKU</MudTh>
+                        <MudTh Style="text-align:center">Date Created</MudTh>
+                        <MudTh Style="text-align:center">Date Modified</MudTh>
+                        <MudTh Style="text-align:center">Action</MudTh>
                     </MudTHeadRow>
                 </HeaderContent>
                 <RowTemplate>
-                    <MudTd DataLabel="Product Name" Class="d-flex justify-center align-center">
+                    <MudTd DataLabel="Product Name" Class="d-flex justify-center align-center pe-0">
                         @{
                             var productImage = context.Images
                             .FirstOrDefault();
                         }
-                        <MudImage Src="@productImage.Data" Width="80" Height="80" ObjectFit="ObjectFit.Cover" Alt="@productImage.Url" Elevation="0" Class="rounded me-4" />
-                        <MudContainer Class="pa-0">
+                        <MudImage Src="@productImage.Data" Width="80" Height="80" ObjectFit="ObjectFit.Cover" Alt="@productImage.Url" Elevation="0" Class="rounded me-3"/>
+                        <MudContainer>
                             <strong>@Text.LimitText(context.Name, 15)</strong> <br/>
                             @Text.LimitText(context.Description, 25)
                         </MudContainer>
                     </MudTd>
-                    <MudTd DataLabel="Stocks">
+                    <MudTd DataLabel="Stocks" Style="text-align:center">
                         @{
                             int stocks = 0;
                             foreach(var item in context.Variants)
@@ -77,17 +78,28 @@ else
                         }
                         @stocks
                     </MudTd>
-                    <MudTd DataLabel="Price">@context.BasePrice</MudTd>
-                    <MudTd DataLabel="SKU" Class="pe-0">
+                    <MudTd DataLabel="Price" Style="text-align:center">@context.BasePrice</MudTd>
+                    <MudTd DataLabel="SKU" Style="text-align:center">
                         @foreach (var variant in context.Variants)
                         {
                             @variant.SKU
                             break;
                         }
                     </MudTd>
-                    <MudTd DataLabel="Date Created" Class="pe-0">@context.DateCreated</MudTd>
-                    <MudTd DataLabel="Action" Class="pe-0">
-                        <MudButton @onclick="() => EditProduct(context)" Variant="Variant.Outlined" Color="Color.Tertiary" Size="Size.Small">Edit</MudButton>
+                    <MudTd DataLabel="Date Created" Style="text-align:center">@context.DateCreated</MudTd>
+                    <MudTd DataLabel="Date Modified" Style="text-align:center">
+                        @if(context.DateModified == null)
+                        {
+                            string dateModifiedNull = "Not Modified";
+                            @dateModifiedNull
+                        }
+                        else
+                        {
+                            @context.DateModified
+                        }
+                    </MudTd>
+                    <MudTd DataLabel="Action" Style="text-align:center">
+                        <MudButton @onclick="() => EditProduct(context.Id)" Variant="Variant.Outlined" Color="Color.Tertiary" Size="Size.Small">Edit</MudButton>
                         <MudButton @onclick="() => ShowDeleteDialog(context)" Variant="Variant.Outlined" Color="Color.Error" Size="Size.Small" Class="me-1">Delete</MudButton>
                     </MudTd>
                 </RowTemplate>

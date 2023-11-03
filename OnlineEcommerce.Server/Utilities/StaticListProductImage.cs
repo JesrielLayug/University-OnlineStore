@@ -15,7 +15,7 @@ namespace OnlineEcommerce.Server.Utilities
 
     public static class StaticListProductImage
     {
-        private static List<DTO_ProductImage> Images = new List<DTO_ProductImage>();
+        public static List<DTO_ProductImage> Images = new List<DTO_ProductImage>();
         public static event EventHandler<EventArgsImage> ClickAddImage;
         public static event EventHandler<EventArgsImage> ClickRemoveImage;
 

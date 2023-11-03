@@ -4,7 +4,7 @@ using OnlineEcommerce.Server.Models.DTOs;
 
 namespace OnlineEcommerce.Server.Extensions
 {
-    public static class ProductExtension
+    public static class ListProductExtension
     {
         public static IEnumerable<DTO_Product> ConvertToDto(this 
                                                             IEnumerable<Product> products,
@@ -18,6 +18,7 @@ namespace OnlineEcommerce.Server.Extensions
                 BasePrice = product.Price,
                 Description = product.Description,
                 DateCreated = product.DateCreated,
+                DateModified = product.DateModified,
                 Images = images
                     .Where(image => image.ProductId == product.Id)
                     .Select(image => new DTO_ProductImage

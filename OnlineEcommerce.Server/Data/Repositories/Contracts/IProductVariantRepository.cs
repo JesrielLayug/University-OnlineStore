@@ -6,6 +6,7 @@ namespace OnlineEcommerce.Server.Data.Repositories.Contracts
     public interface IProductVariantRepository
     {
         Task<IEnumerable<ProductVariant>> GetAll();
+        Task<IEnumerable<ProductVariant>> GetByProductId(int id);
         Task<int> Create(ProductVariant productVariant);
         Task<int?> GetBySKU(string SKU);
         Task<bool> Delete(int ProductId);

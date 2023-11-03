@@ -10,7 +10,7 @@ using OnlineEcommerce.Server.Utilities;
 
 namespace OnlineEcommerce.Server.Pages.Product
 {
-    public class AddProductBase : ComponentBase
+    public class EditProductBase : ComponentBase
     {
         [Inject]
         IProductService ProductService { get; set; }
@@ -31,27 +31,40 @@ namespace OnlineEcommerce.Server.Pages.Product
         public DTO_ProductImage productImage;
 
         public bool _processing = false;
+        public DTO_ProductVariant selectedVariant = null;
 
 
         // Edit Products Property
-        public DTO_Product Product;
+        public int ProductId;
+        public DTO_Product ProductToBeEdit;
 
-        public AddProductBase()
+        public int productStock;
+
+        public EditProductBase()
         {
-            LoadsComponents().Wait();
+            LoadsComponents();
         }
 
         protected override async Task OnInitializedAsync()
         {
-            Product = StaticProduct.GetProduct();
+            ResetPage();
+            ProductId = StaticProductId.GetProduct();
 
-            if (Product.Id != 0)
+            if(ProductId != 0)
             {
-                productDetail.Name = Product.Name;
-                productDetail.Description = Product.Description;
-                productDetail.BasePrice = Product.BasePrice;
-                Images = Product.Images;
-                Variants = Product.Variants;
+                ProductToBeEdit = await ProductService.GetById(ProductId);
+
+                productDetail.Name = ProductToBeEdit.Name;
+                productDetail.BasePrice = ProductToBeEdit.BasePrice;
+                productDetail.Description = ProductToBeEdit.Description;
+                foreach (var image in ProductToBeEdit.Images)
+                {
+                    StaticListProductImage.AddImage(image);
+                }
+                foreach (var item in ProductToBeEdit.Variants)
+                {
+                    StaticListProductVariant.AddVariant(item);
+                }
             }
         }
 
@@ -67,22 +80,34 @@ namespace OnlineEcommerce.Server.Pages.Product
                     Stock = variant.Stock,
                 });
             }
+            else
+            {
+                Snackbar.Clear();
+                Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
+                Snackbar.Add("Please add stock to the variant.", Severity.Error);
+            }
         }
 
-        public void RemoveChip(MudChip chip)
+        public async Task RemoveVariantChip(MudChip chip)
         {
             string chipText = chip.Text;
             DTO_ProductVariant variantToRemove = Variants.FirstOrDefault(v => v.Size == chipText || v.Color == chipText);
-            DTO_ProductImage imageToRemove = Images.FirstOrDefault(i => i.Url == chipText);
-
+            
             if (variantToRemove != null)
             {
                 StaticListProductVariant.RemoveVariant(variantToRemove);
             }
+        }
+
+        public async Task RemoveImageChip(MudChip chip)
+        {
+            string chipText = chip.Text;
+            DTO_ProductImage imageToRemove = Images.FirstOrDefault(i => i.Url == chipText);
 
             if (imageToRemove != null)
             {
                 StaticListProductImage.RemoveImage(imageToRemove);
+                StateHasChanged();
             }
         }
 
@@ -103,13 +128,13 @@ namespace OnlineEcommerce.Server.Pages.Product
                     Data = imageData
                 };
                 StaticListProductImage.AddImage(productImage);
+                StateHasChanged();
             }
         }
 
 
-        public async Task LoadsComponents()
+        public void LoadsComponents()
         {
-
             Variants = StaticListProductVariant.GetVariants();
             Images = StaticListProductImage.GetImages();
         }
@@ -135,11 +160,14 @@ namespace OnlineEcommerce.Server.Pages.Product
             }
             else 
             {
+
                 var response = await ProductService.Create(new DTO_Product
                 {
+                    Id = ProductId,
                     Name = productDetail.Name,
                     Description = productDetail.Description,
                     BasePrice = productDetail.BasePrice,
+                    SKU = Variants[0].SKU,
                     Variants = Variants,
                     Images = Images
                 });
@@ -159,14 +187,49 @@ namespace OnlineEcommerce.Server.Pages.Product
             } 
         }
 
-        //public async Task UpdateProduct(DTO_Product product)
-        //{
-
-        //}
-
-        public async Task ClearForm(DTO_Product product)
+        public async Task UpdateProduct()
         {
-            await StaticProduct.RemoveProductToEdit(product);
+            _processing = true;
+            await Task.Delay(2000);
+            Snackbar.Clear();
+            Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
+
+            if(Variants.Count == 0 || Images.Count == 0)
+            {
+                _processing = false;
+                Snackbar.Add("Please complete each field.", Severity.Error);
+            }
+            else
+            {
+                var response = await ProductService.Update(new DTO_Product
+                {
+                    Id = ProductToBeEdit.Id,
+                    Name = productDetail.Name,
+                    Description = productDetail.Description,
+                    BasePrice = productDetail.BasePrice,
+                    SKU = ProductToBeEdit.Variants[0].SKU,
+                    Variants = Variants,
+                    Images = Images
+                });
+
+                if (response.IsSuccess)
+                {
+                    _processing = false;
+                    ResetPage();
+                    Snackbar.Add(response.StatusMessage, Severity.Success);
+                    StateHasChanged();
+                }
+                else
+                {
+                    _processing = false;
+                    Snackbar.Add(response.StatusMessage, Severity.Error);
+                }
+            }
+        }
+
+        public async Task ClearForm()
+        {
+            await StaticProductId.RemoveProductToEdit(ProductId);
             ResetPage();
             StateHasChanged();
         }
