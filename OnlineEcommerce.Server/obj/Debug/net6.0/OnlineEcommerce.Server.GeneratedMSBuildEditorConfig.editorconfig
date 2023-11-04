@@ -20,6 +20,14 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/LAYUG/Desktop/UniversityStore/OnlineEcommerce.Server/Pages(Users)/Profile/Profile.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMoVXNlcnMpXFByb2ZpbGVcUHJvZmlsZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LAYUG/Desktop/UniversityStore/OnlineEcommerce.Server/Pages(Users)/ShoppingCart/ShoppingCart.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMoVXNlcnMpXFNob3BwaW5nQ2FydFxTaG9wcGluZ0NhcnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/LAYUG/Desktop/UniversityStore/OnlineEcommerce.Server/Pages/Dashboard/Dashboard.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXERhc2hib2FyZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -52,13 +60,13 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFVzZXJzXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/LAYUG/Desktop/UniversityStore/OnlineEcommerce.Server/Shared/Users/UserLayout.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFVzZXJzXFVzZXJMYXlvdXQucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/LAYUG/Desktop/UniversityStore/OnlineEcommerce.Server/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LAYUG/Desktop/UniversityStore/OnlineEcommerce.Server/Pages(Users)/Store/Store.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMoVXNlcnMpXFN0b3JlXFN0b3JlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-iipremtnc2
 
 [C:/Users/LAYUG/Desktop/UniversityStore/OnlineEcommerce.Server/Pages/Product/EditProduct.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxFZGl0UHJvZHVjdC5yYXpvcg==
@@ -71,6 +79,10 @@ build_metadata.AdditionalFiles.CssScope = b-clcai6gvi0
 [C:/Users/LAYUG/Desktop/UniversityStore/OnlineEcommerce.Server/Shared/Components/Loading.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXBvbmVudHNcTG9hZGluZy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-kjmtzb858a
+
+[C:/Users/LAYUG/Desktop/UniversityStore/OnlineEcommerce.Server/Shared/Users/UserLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFVzZXJzXFVzZXJMYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-py07i5l361
 
 [C:/Users/LAYUG/Desktop/UniversityStore/OnlineEcommerce.Server/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s

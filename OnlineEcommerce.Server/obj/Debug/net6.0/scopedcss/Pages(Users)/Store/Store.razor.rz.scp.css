@@ -1,0 +1,19 @@
+.heading[b-iipremtnc2] {
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+
+
+@media screen and (max-width: 400px) {
+    *[b-iipremtnc2]{
+        font-size: 12px;
+    }
+
+    .heading[b-iipremtnc2] {
+        font-size: 20px;
+        font-weight: 600;
+        margin-top: 20px;
+    }
+}

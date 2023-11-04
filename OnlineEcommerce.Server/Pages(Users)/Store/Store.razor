@@ -1,0 +1,29 @@
+﻿@page "/store"
+@inherits StoreBase
+
+
+@if(OrganizationList.Count() == 0)
+{
+    <Loading />
+}
+else
+{
+
+    <h3 class="heading">All Products</h3>
+    <MudText Typo="Typo.body1" Class="mt-2 mb-5" Style="font-size: 14px; color: #8f8f8fff;">
+        Our mission is to simplify your shopping experience.
+        Discover a diverse range of products, find great deals, and shop with confidence. 
+    </MudText>
+    <MudChipSet Filter="true">
+
+        @foreach (var item in OrganizationList)
+        {
+            <MudChip Style="font-size: 12px" Variant="Variant.Text" Color="Color.Default" Text="@item.Name" SelectedColor="Color.Info"></MudChip>
+        }
+    </MudChipSet>
+    <MudDivider Class="my-5"/>
+}
+
+@code{
+    string searchString1;
+}

@@ -57,12 +57,12 @@ else
                     </MudTHeadRow>
                 </HeaderContent>
                 <RowTemplate>
-                    <MudTd DataLabel="Product Name" Class="d-flex justify-center align-center pe-0">
+                    <MudTd DataLabel="Product Name" Class="d-flex justify-center align-center pe-0 me-0">
                         @{
                             var productImage = context.Images
                             .FirstOrDefault();
                         }
-                        <MudImage Src="@productImage.Data" Width="80" Height="80" ObjectFit="ObjectFit.Cover" Alt="@productImage.Url" Elevation="0" Class="rounded me-3"/>
+                        <MudImage Src="@productImage.Data" Width="80" Height="80" ObjectFit="ObjectFit.Cover" Alt="@productImage.Url" Elevation="0" Class="rounded"/>
                         <MudContainer>
                             <strong>@Text.LimitText(context.Name, 15)</strong> <br/>
                             @Text.LimitText(context.Description, 25)

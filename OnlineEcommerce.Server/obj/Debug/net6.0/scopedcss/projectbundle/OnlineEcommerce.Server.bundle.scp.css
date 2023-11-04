@@ -1,3 +1,23 @@
+/* _content/OnlineEcommerce.Server/Pages(Users)/Store/Store.razor.rz.scp.css */
+.heading[b-iipremtnc2] {
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+
+
+@media screen and (max-width: 400px) {
+    *[b-iipremtnc2]{
+        font-size: 12px;
+    }
+
+    .heading[b-iipremtnc2] {
+        font-size: 20px;
+        font-weight: 600;
+        margin-top: 20px;
+    }
+}
 /* _content/OnlineEcommerce.Server/Pages/Product/EditProduct.razor.rz.scp.css */
 .heading[b-jjwpfv3lao] {
     font-size: 30px;
@@ -104,5 +124,12 @@ th[b-jjwpfv3lao], td[b-jjwpfv3lao] {
 
     to {
         stroke-dashoffset: 1;
+    }
+}
+/* _content/OnlineEcommerce.Server/Shared/Users/UserLayout.razor.rz.scp.css */
+@media screen and (max-width: 400px) {
+    .title[b-py07i5l361]{
+        font-size: 16px;
+        font-weight: 500;
     }
 }
